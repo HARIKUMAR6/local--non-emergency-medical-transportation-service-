@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <title>Account Sign In and Registration · Hearthway Medical Transport</title>
+  <!-- @include head title="Account Sign In and Registration" description="Sign in to your Hearthway patient account or register to coordinate non-emergency medical transportation." robots="noindex, nofollow" -->
+  <script type="module" src="assets/js/login.js"></script>
+</head>
+<body class="min-h-dvh flex flex-col justify-between bg-canvas text-ink">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Standalone Authentication Header -->
+  <header class="w-full border-b border-line bg-surface/80 backdrop-blur-sm">
+    <div class="container-site flex h-[var(--header-h)] items-center justify-between">
+      <a href="index.html" class="-ms-1 rounded-md p-1 text-ink no-underline" aria-label="Hearthway Medical Transport, Home">
+        <!-- @include brand -->
+      </a>
+      <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1">
+          <!-- @include preference-toggles -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Centered Standalone Auth Main Content -->
+  <main id="main" class="flex-1 flex items-center justify-center px-[var(--gutter)] py-10 sm:py-14">
+    <div class="w-full max-w-[28rem] rounded-lg border border-line bg-surface p-6 sm:p-8 shadow-[var(--shadow-raised)]">
+      <!-- Sign In / Create Account Tab Control -->
+      <div class="segmented mb-6" role="tablist" aria-label="Account actions">
+        <button type="button" class="segmented-option" id="tab-login" role="tab" aria-selected="true" aria-controls="panel-login">
+          Sign In
+        </button>
+        <button type="button" class="segmented-option" id="tab-register" role="tab" aria-selected="false" aria-controls="panel-register">
+          Create Account
+        </button>
+      </div>
+
+      <!-- ==================== SIGN IN PANEL ==================== -->
+      <div id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+        <h1 class="text-2xl font-bold">Sign in to your account</h1>
+        <p class="mt-2 text-sm text-ink-muted">Access your scheduled rides and transportation details.</p>
+
+        <form id="login-form" class="mt-6 grid gap-5" novalidate>
+          <div class="form-status" role="status" aria-live="polite" data-form-status></div>
+
+          <div class="field">
+            <label class="field-label" for="login-email">Email address</label>
+            <input class="input" id="login-email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="alex.morgan@example.com" aria-describedby="login-email-error" required>
+            <p class="field-error" id="login-email-error" data-error-for="email" hidden></p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="login-password">Password</label>
+            <div class="input-group">
+              <input class="input" id="login-password" name="password" type="password" autocomplete="current-password" aria-describedby="login-password-error" required>
+              <button type="button" class="btn btn-ghost input-group-action" data-password-toggle aria-controls="login-password">
+                <span data-toggle-label>Show</span>
+                <span class="sr-only"> password</span>
+              </button>
+            </div>
+            <p class="field-error" id="login-password-error" data-error-for="password" hidden></p>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+            <label class="flex min-h-[var(--control-h)] items-center gap-2.5 text-sm cursor-pointer">
+              <input class="check" type="checkbox" name="remember">
+              Remember my email
+            </label>
+            <button type="button" class="text-sm font-bold text-brand-ink underline underline-offset-4 hover:decoration-2" data-forgot-trigger aria-expanded="false" aria-controls="forgot-panel">
+              Forgot password?
+            </button>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block mt-1">Sign in</button>
+        </form>
+
+        <div class="mt-6">
+          <a class="inline-flex min-h-[var(--control-h)] items-center font-bold text-brand-ink underline underline-offset-4" href="dashboard.html">Continue to dashboard without signing in</a>
+        </div>
+
+        <!-- Forgot password simulated panel -->
+        <div id="forgot-panel" class="mt-6 rounded-md border border-line bg-sunken p-5" hidden>
+          <h2 class="text-lg font-bold outline-none" tabindex="-1">Reset your password</h2>
+          <p class="mt-1 text-sm text-ink-muted">Enter the email address you use for your account.</p>
+          <form class="mt-4 grid gap-4" novalidate>
+            <div class="form-status" role="status" aria-live="polite" data-form-status></div>
+            <div class="field">
+              <label class="field-label" for="reset-email">Email address</label>
+              <input class="input" id="reset-email" name="reset-email" type="email" autocomplete="email" inputmode="email" spellcheck="false" aria-describedby="reset-email-error" required>
+              <p class="field-error" id="reset-email-error" data-error-for="reset-email" hidden></p>
+            </div>
+            <div class="flex flex-wrap gap-2.5">
+              <button type="submit" class="btn btn-primary">Request reset link</button>
+              <button type="button" class="btn btn-ghost" data-forgot-close>Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ==================== CREATE ACCOUNT PANEL ==================== -->
+      <div id="panel-register" role="tabpanel" aria-labelledby="tab-register" hidden>
+        <h1 class="text-2xl font-bold">Create your account</h1>
+        <p class="mt-2 text-sm text-ink-muted">Register to coordinate rides for yourself or a family member.</p>
+
+        <form id="register-form" class="mt-6 grid gap-5" novalidate>
+          <div class="form-status" role="status" aria-live="polite" data-form-status></div>
+
+          <div class="field">
+            <label class="field-label" for="register-name">Full name</label>
+            <input class="input" id="register-name" name="name" type="text" autocomplete="name" placeholder="Alex Morgan" aria-describedby="register-name-error" required>
+            <p class="field-error" id="register-name-error" data-error-for="name" hidden></p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="register-email">Email address</label>
+            <input class="input" id="register-email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="alex.morgan@example.com" aria-describedby="register-email-error" required>
+            <p class="field-error" id="register-email-error" data-error-for="email" hidden></p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="register-password">Password</label>
+            <div class="input-group">
+              <input class="input" id="register-password" name="password" type="password" autocomplete="new-password" aria-describedby="register-password-hint register-password-error" minlength="8" required>
+              <button type="button" class="btn btn-ghost input-group-action" data-password-toggle aria-controls="register-password">
+                <span data-toggle-label>Show</span>
+                <span class="sr-only"> password</span>
+              </button>
+            </div>
+            <p class="field-hint" id="register-password-hint">Must be at least 8 characters.</p>
+            <p class="field-error" id="register-password-error" data-error-for="password" hidden></p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="register-confirm-password">Confirm password</label>
+            <div class="input-group">
+              <input class="input" id="register-confirm-password" name="confirmPassword" type="password" autocomplete="new-password" aria-describedby="register-confirm-password-error" required>
+              <button type="button" class="btn btn-ghost input-group-action" data-password-toggle aria-controls="register-confirm-password">
+                <span data-toggle-label>Show</span>
+                <span class="sr-only"> password</span>
+              </button>
+            </div>
+            <p class="field-error" id="register-confirm-password-error" data-error-for="confirmPassword" hidden></p>
+          </div>
+
+          <div class="field">
+            <label class="flex items-start gap-3 text-sm cursor-pointer">
+              <input class="check mt-0.5" type="checkbox" id="register-terms" name="terms" aria-describedby="register-terms-error" required>
+              <span>I agree to the Terms and Conditions and patient transport service policies.</span>
+            </label>
+            <p class="field-error" id="register-terms-error" data-error-for="terms" hidden></p>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block mt-1">Create account</button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Standalone Authentication Footer -->
+  <footer class="w-full border-t border-line py-5 px-[var(--gutter)] text-center text-xs text-ink-subtle">
+    <p>Hearthway provides planned, non-emergency medical transportation only. In a medical emergency, call 911.</p>
+    <p class="mt-1">&copy; <span data-current-year>2026</span> Hearthway Medical Transport. All rights reserved.</p>
+  </footer>
+</body>
+</html>

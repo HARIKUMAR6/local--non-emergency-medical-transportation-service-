@@ -1,0 +1,834 @@
+/* ==========================================================================
+   Hearthway — design system entry point (Tailwind CSS v4)
+   Build: npm run build:css   ·   Watch: npm run dev
+   ========================================================================== */
+
+@import "tailwindcss" source(none);
+@import "./pages/home.css";
+@import "./pages/app.css";
+@import "./pages/inner.css";
+
+@source "../pages";
+@source "../partials";
+@source "../assets/js";
+
+/* Dark mode is driven by <html data-theme="dark">, not the media query,
+   so the saved preference always wins. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+/* rtl:/ltr: variants are built into Tailwind v4 and read the dir attribute. */
+
+/* --------------------------------------------------------------------------
+   1. Runtime tokens (switch with theme)
+   -------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+
+  --c-canvas: #f6f2e9;          /* warm ivory page background */
+  --c-surface: #fdfbf6;         /* raised panels, dropdowns, drawer */
+  --c-sunken: #eee8dc;          /* wells, hover fills, input backgrounds */
+  --c-ink: #18211c;             /* primary text */
+  --c-ink-muted: #48544d;       /* secondary text */
+  --c-ink-subtle: #5b665f;      /* meta text (still ≥ 4.5:1) */
+  --c-line: #dcd4c4;            /* separators */
+  --c-line-strong: #847c6c;     /* control borders (≥ 3:1) */
+
+  --c-brand: #1e4a37;           /* deep forest green */
+  --c-brand-hover: #173b2c;
+  --c-brand-active: #112d21;
+  --c-on-brand: #fdfbf6;
+  --c-brand-ink: #1e4a37;       /* brand-coloured text on canvas */
+  --c-brand-soft: #e2eadf;      /* tinted fills, active nav */
+  --c-sage: #7e977f;
+  --c-sage-soft: #e4e9de;
+  --c-accent: #9a5230;          /* restrained clay accent */
+
+  --c-focus: #b4532a;
+  --c-danger: #a3322a;
+  --c-success: #2e6b45;
+  --c-warning: #8a5a12;
+
+  --c-footer-bg: #16352a;
+  --c-footer-ink: #f1ece1;
+  --c-footer-muted: #b7c6bb;
+  --c-footer-line: #2c4b3f;
+
+  --c-scrim: rgb(17 26 21 / 0.48);
+
+  /* Inverse band: deep green sections inside the page */
+  --c-inverse-bg: #1b3f30;
+  --c-inverse-ink: #f4efe4;
+  --c-inverse-muted: #c2d0c5;
+  --c-inverse-accent: #cfe3d2;
+  --c-inverse-line: #4f7363;
+
+  --shadow-raised: 0 1px 2px rgb(24 33 28 / 0.06), 0 8px 24px -12px rgb(24 33 28 / 0.18);
+  --shadow-overlay: 0 2px 6px rgb(24 33 28 / 0.08), 0 24px 48px -16px rgb(24 33 28 / 0.28);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --c-canvas: #0f1512;
+  --c-surface: #161e1a;
+  --c-sunken: #1c2621;
+  --c-ink: #ece6da;
+  --c-ink-muted: #b4bdb5;
+  --c-ink-subtle: #97a29a;
+  --c-line: #29342e;
+  --c-line-strong: #66756c;
+
+  --c-brand: #9ccaab;
+  --c-brand-hover: #b3d8bf;
+  --c-brand-active: #86b897;
+  --c-on-brand: #0e1f16;
+  --c-brand-ink: #a8d3b6;
+  --c-brand-soft: #1d2e25;
+  --c-sage: #6f8b73;
+  --c-sage-soft: #1f2b24;
+  --c-accent: #d99a73;
+
+  --c-focus: #e9a77c;
+  --c-danger: #f08a7e;
+  --c-success: #8ccb9e;
+  --c-warning: #e3b86b;
+
+  --c-footer-bg: #132820;
+  --c-footer-ink: #e6e0d4;
+  --c-footer-muted: #a3aea6;
+  --c-footer-line: #24392f;
+
+  --c-scrim: rgb(0 0 0 / 0.6);
+
+  --c-inverse-bg: #18271f;
+  --c-inverse-ink: #ece6da;
+  --c-inverse-muted: #adb9b0;
+  --c-inverse-accent: #a8d3b6;
+  --c-inverse-line: #4a5e53;
+
+  --shadow-raised: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+  --shadow-overlay: 0 2px 6px rgb(0 0 0 / 0.4), 0 24px 48px -16px rgb(0 0 0 / 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   2. Tailwind theme — semantic utilities only (default palette removed so
+      every page draws from the same tokens).
+   -------------------------------------------------------------------------- */
+
+@theme inline {
+  --color-*: initial;
+  --color-canvas: var(--c-canvas);
+  --color-surface: var(--c-surface);
+  --color-sunken: var(--c-sunken);
+  --color-ink: var(--c-ink);
+  --color-ink-muted: var(--c-ink-muted);
+  --color-ink-subtle: var(--c-ink-subtle);
+  --color-line: var(--c-line);
+  --color-line-strong: var(--c-line-strong);
+  --color-brand: var(--c-brand);
+  --color-brand-hover: var(--c-brand-hover);
+  --color-brand-active: var(--c-brand-active);
+  --color-on-brand: var(--c-on-brand);
+  --color-brand-ink: var(--c-brand-ink);
+  --color-brand-soft: var(--c-brand-soft);
+  --color-sage: var(--c-sage);
+  --color-sage-soft: var(--c-sage-soft);
+  --color-accent: var(--c-accent);
+  --color-focus: var(--c-focus);
+  --color-danger: var(--c-danger);
+  --color-success: var(--c-success);
+  --color-warning: var(--c-warning);
+  --color-footer: var(--c-footer-bg);
+  --color-footer-ink: var(--c-footer-ink);
+  --color-footer-muted: var(--c-footer-muted);
+  --color-footer-line: var(--c-footer-line);
+  --color-scrim: var(--c-scrim);
+  --color-inverse: var(--c-inverse-bg);
+  --color-inverse-ink: var(--c-inverse-ink);
+  --color-inverse-muted: var(--c-inverse-muted);
+  --color-inverse-accent: var(--c-inverse-accent);
+  --color-inverse-line: var(--c-inverse-line);
+
+  --shadow-raised: var(--shadow-raised);
+  --shadow-overlay: var(--shadow-overlay);
+}
+
+@theme {
+  --font-display: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Type scale — body never drops below 16px; display sizes are fluid. */
+  --text-xs: 0.8125rem;   --text-xs--line-height: 1.45;
+  --text-sm: 0.9375rem;   --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem; --text-base--line-height: 1.65;
+  --text-lg: 1.1875rem;   --text-lg--line-height: 1.6;
+  --text-xl: 1.375rem;    --text-xl--line-height: 1.4;
+  --text-2xl: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);   --text-2xl--line-height: 1.25;
+  --text-3xl: clamp(1.875rem, 1.5rem + 1.5vw, 2.5rem);   --text-3xl--line-height: 1.15;
+  --text-4xl: clamp(2.25rem, 1.7rem + 2.4vw, 3.375rem);  --text-4xl--line-height: 1.08;
+  --text-5xl: clamp(2.625rem, 1.8rem + 3.6vw, 4.5rem);   --text-5xl--line-height: 1.02;
+  --text-6xl: clamp(2.75rem, 1.5rem + 4.6vw, 5.25rem);   --text-6xl--line-height: 1;
+
+  --tracking-eyebrow: 0.14em;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.625rem;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  --breakpoint-xs: 30rem;   /* 480px — large phones / landscape */
+}
+
+/* Non-utility tokens shared by components. */
+:root {
+  --container-max: 76rem;
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2rem);
+  --section-space: clamp(4rem, 2.5rem + 6vw, 8rem);
+  --header-h: 4.5rem;
+  --control-h: 2.75rem;      /* 44px — touch-target minimum */
+  --control-h-lg: 3.25rem;
+  --control-px: 1.25rem;
+  --focus-ring: 0 0 0 2px var(--c-canvas), 0 0 0 4px var(--c-focus);
+  --duration-fast: 140ms;
+  --duration-base: 220ms;
+  --duration-slow: 320ms;
+}
+
+/* --------------------------------------------------------------------------
+   3. Base
+   -------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    background-color: var(--c-canvas);
+    color: var(--c-ink);
+    font-family: var(--font-sans);
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    scrollbar-gutter: stable;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+
+  body {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: clip;
+    background-color: var(--c-canvas);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+  }
+
+  body > main { flex: 1 0 auto; }
+
+  /* Headings are never right-aligned — not even in RTL. */
+  :where(h1, h2, h3, h4, h5, h6) {
+    text-align: left;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--c-ink);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  /* RTL with left-to-right copy (e.g. English): each block takes its base
+     direction from its own text, so punctuation stays where it belongs.
+     Body text still aligns to the right edge; headings keep the left-align
+     rule above. Genuine RTL-script content is unaffected. */
+  [dir="rtl"] :where(h1, h2, h3, h4, h5, h6, p, li, dt, dd, figcaption, summary, blockquote, label, button) {
+    unicode-bidi: plaintext;
+  }
+  [dir="rtl"] :where(p, li, dt, dd, figcaption, summary, blockquote, label) {
+    text-align: right;
+  }
+
+  ::selection {
+    background-color: var(--c-brand);
+    color: var(--c-on-brand);
+  }
+
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 2px solid var(--c-focus);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  a { color: inherit; text-underline-offset: 0.2em; }
+
+  svg { flex-shrink: 0; }
+
+  [hidden] { display: none !important; }
+
+  /* Suppress colour transitions while the theme flips. */
+  :root[data-theme-switching] *,
+  :root[data-theme-switching] *::before,
+  :root[data-theme-switching] *::after {
+    transition: none !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Components — reusable across all pages
+   -------------------------------------------------------------------------- */
+
+@layer components {
+  /* Layout */
+  .container-site {
+    width: 100%;
+    max-width: calc(var(--container-max) + var(--gutter) * 2);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .section { padding-block: var(--section-space); }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--c-brand-ink);
+  }
+
+  .lede {
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+    color: var(--c-ink-muted);
+    max-width: 38rem;
+  }
+
+  .prose-measure { max-width: 68ch; }
+
+  .skip-link {
+    position: absolute;
+    inset-inline-start: var(--gutter);
+    top: 0.75rem;
+    z-index: 100;
+    transform: translateY(-200%);
+    padding: 0.625rem 1rem;
+    border-radius: var(--radius-md);
+    background: var(--c-brand);
+    color: var(--c-on-brand);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .skip-link:focus-visible { transform: none; }
+
+  /* ---- Buttons ----------------------------------------------------------
+     One base + variants + sizes. Every CTA in the site uses these. */
+  .btn {
+    --btn-bg: transparent;
+    --btn-fg: var(--c-ink);
+    --btn-border: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: var(--control-h);
+    padding-inline: var(--control-px);
+    padding-block: 0.5rem;
+    border: 1px solid var(--btn-border);
+    border-radius: var(--radius-md);
+    background-color: var(--btn-bg);
+    color: var(--btn-fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.005em;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background-color var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard),
+      color var(--duration-fast) var(--ease-standard),
+      transform var(--duration-fast) var(--ease-standard);
+  }
+  .btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+  .btn:active:not(:disabled, [aria-disabled="true"]) { transform: translateY(1px); }
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  .btn svg { width: 1.125rem; height: 1.125rem; }
+
+  .btn-primary {
+    --btn-bg: var(--c-brand);
+    --btn-fg: var(--c-on-brand);
+    --btn-border: var(--c-brand);
+  }
+  .btn-primary:hover:not(:disabled, [aria-disabled="true"]) {
+    --btn-bg: var(--c-brand-hover);
+    --btn-border: var(--c-brand-hover);
+  }
+  .btn-primary:active:not(:disabled, [aria-disabled="true"]) {
+    --btn-bg: var(--c-brand-active);
+    --btn-border: var(--c-brand-active);
+  }
+
+  .btn-secondary {
+    --btn-bg: transparent;
+    --btn-fg: var(--c-brand-ink);
+    --btn-border: var(--c-line-strong);
+  }
+  .btn-secondary:hover:not(:disabled, [aria-disabled="true"]) {
+    --btn-bg: var(--c-brand-soft);
+    --btn-border: var(--c-brand-ink);
+  }
+  .btn-secondary:active:not(:disabled, [aria-disabled="true"]) { --btn-bg: var(--c-sage-soft); }
+
+  .btn-ghost {
+    --btn-fg: var(--c-ink);
+  }
+  .btn-ghost:hover:not(:disabled, [aria-disabled="true"]) { --btn-bg: var(--c-sunken); }
+  .btn-ghost:active:not(:disabled, [aria-disabled="true"]) { --btn-bg: var(--c-line); }
+
+  .btn-lg {
+    min-height: var(--control-h-lg);
+    padding-inline: 1.625rem;
+    font-size: var(--text-base);
+  }
+  .btn-block { width: 100%; }
+
+  /* Square icon button — same height as .btn */
+  .btn-icon {
+    width: var(--control-h);
+    padding-inline: 0;
+  }
+
+  /* Arrows and chevrons that point "forward" flip in RTL. */
+  [dir="rtl"] .icon-directional { transform: scaleX(-1); }
+
+  .btn-inverse {
+    --btn-bg: var(--c-inverse-ink);
+    --btn-fg: var(--c-inverse-bg);
+    --btn-border: var(--c-inverse-ink);
+  }
+  .btn-inverse:hover:not(:disabled, [aria-disabled="true"]) {
+    --btn-bg: var(--c-inverse-accent);
+    --btn-border: var(--c-inverse-accent);
+  }
+  .btn-inverse-outline {
+    --btn-fg: var(--c-inverse-ink);
+    --btn-border: var(--c-inverse-muted);
+  }
+  .btn-inverse-outline:hover:not(:disabled, [aria-disabled="true"]) {
+    --btn-bg: rgb(255 255 255 / 0.08);
+    --btn-border: var(--c-inverse-ink);
+  }
+
+  /* ---- Editorial helpers -------------------------------------------------- */
+
+  /* Deep green band; headings, links and focus adapt automatically. */
+  .band-inverse {
+    --c-canvas: var(--c-inverse-bg); /* focus-ring gap matches the band */
+    background-color: var(--c-inverse-bg);
+    color: var(--c-inverse-ink);
+  }
+  .band-inverse :where(h1, h2, h3, h4) { color: var(--c-inverse-ink); }
+  .band-inverse .eyebrow { color: var(--c-inverse-accent); }
+  .band-inverse .lede { color: var(--c-inverse-muted); }
+  .band-inverse .link-arrow { color: var(--c-inverse-accent); }
+
+  .section-tight { padding-block: calc(var(--section-space) * 0.6); }
+
+  /* Images that fill a fixed-ratio frame */
+  .media {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background-color: var(--c-sunken);
+  }
+  .media > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .figure-caption {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    font-size: var(--text-xs);
+    line-height: 1.5;
+    color: var(--c-ink-subtle);
+  }
+  .figure-caption::before {
+    content: "";
+    flex: 0 0 1.5rem;
+    height: 1px;
+    transform: translateY(-0.25em);
+    background-color: currentColor;
+  }
+  .band-inverse .figure-caption { color: var(--c-inverse-muted); }
+
+  /* Text link with a forward arrow (flips in RTL) */
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: var(--control-h);
+    color: var(--c-brand-ink);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+  }
+  .link-arrow svg {
+    width: 1rem;
+    height: 1rem;
+    transition: translate var(--duration-base) var(--ease-standard);
+  }
+  .link-arrow:hover { text-decoration-thickness: 2px; }
+  .link-arrow:hover svg { translate: 3px 0; }
+  [dir="rtl"] .link-arrow:hover svg { translate: -3px 0; }
+
+  /* Small status label, e.g. "Illustration" */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--c-line-strong);
+    border-radius: var(--radius-sm);
+    color: var(--c-ink-muted);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+  .band-inverse .tag { border-color: var(--c-inverse-line); color: var(--c-inverse-muted); }
+
+  /* ---- Segmented control (drawer preferences) ---------------------------- */
+  .segmented {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    background-color: var(--c-sunken);
+  }
+  .segmented-option {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--control-h);
+    border-radius: var(--radius-md);
+    color: var(--c-ink-muted);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
+  }
+  .segmented-option svg { width: 1.25rem; height: 1.25rem; }
+  .segmented-option:hover { color: var(--c-ink); }
+  .segmented-option[aria-pressed="true"] {
+    background-color: var(--c-brand);
+    color: var(--c-on-brand);
+  }
+  .segmented-option:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+  /* ---- Form controls ------------------------------------------------------ */
+  .field { display: grid; gap: 0.5rem; }
+  .field-label { font-size: var(--text-sm); font-weight: 700; color: var(--c-ink); }
+  .field-hint { font-size: var(--text-sm); color: var(--c-ink-subtle); }
+  .field-error { font-size: var(--text-sm); font-weight: 700; color: var(--c-danger); }
+
+  .input,
+  .select,
+  .textarea {
+    width: 100%;
+    min-height: var(--control-h-lg);
+    padding-inline: 0.875rem;
+    padding-block: 0.625rem;
+    border: 1px solid var(--c-line-strong);
+    border-radius: var(--radius-md);
+    background-color: var(--c-surface);
+    color: var(--c-ink);
+    font: inherit;
+    font-size: var(--text-base);
+    transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+  }
+  .input::placeholder,
+  .textarea::placeholder { color: var(--c-ink-subtle); opacity: 1; }
+  .input:hover,
+  .select:hover,
+  .textarea:hover { border-color: var(--c-ink-muted); }
+  .input:focus-visible,
+  .select:focus-visible,
+  .textarea:focus-visible {
+    outline: none;
+    border-color: var(--c-brand-ink);
+    box-shadow: var(--focus-ring);
+  }
+  .input[aria-invalid="true"],
+  .select[aria-invalid="true"],
+  .textarea[aria-invalid="true"] { border-color: var(--c-danger); }
+  .input:disabled,
+  .select:disabled,
+  .textarea:disabled { cursor: not-allowed; opacity: 0.55; background-color: var(--c-sunken); }
+  .textarea { min-height: 8rem; resize: vertical; }
+  /* Chrome renders date/time inputs taller than text inputs */
+  .input:is([type="date"], [type="time"]) { height: var(--control-h-lg); }
+  .input::-webkit-datetime-edit { padding-block: 0; }
+
+  .select {
+    appearance: none;
+    padding-inline-end: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23847c6c' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 8 5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    background-position: right 0.875rem center;
+  }
+  [dir="rtl"] .select { background-position: left 0.875rem center; }
+
+  .check {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--c-brand);
+    cursor: pointer;
+  }
+
+  /* ---- Brand mark ------------------------------------------------------ */
+  .brand-mark-bg { color: var(--c-brand); }
+  .brand-mark-fg { color: var(--c-on-brand); }
+  .site-footer .brand-mark-bg { color: var(--c-footer-ink); }
+  .site-footer .brand-mark-fg { color: var(--c-footer-bg); }
+
+  /* ---- Site header ----------------------------------------------------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background-color: var(--c-canvas);
+    border-bottom: 1px solid var(--c-line);
+  }
+
+  .nav-link {
+    --nav-px: 0.5rem;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    min-height: var(--control-h);
+    padding-inline: var(--nav-px);
+    border-radius: var(--radius-md);
+    color: var(--c-ink-muted);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard);
+  }
+  @media (min-width: 80rem) {
+    .nav-link { --nav-px: 0.75rem; }
+  }
+  .nav-link:hover { color: var(--c-ink); background-color: var(--c-sunken); }
+  .nav-link:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+  /* Active indicator: short rule under the label */
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    inset-inline: var(--nav-px);
+    bottom: 0.375rem;
+    height: 2px;
+    border-radius: 1px;
+    background-color: var(--c-brand-ink);
+    transform: scaleX(0);
+    transition: transform var(--duration-base) var(--ease-standard);
+  }
+  .nav-link[aria-current="page"],
+  .nav-link[data-active] { color: var(--c-brand-ink); }
+  .nav-link[aria-current="page"]::after,
+  .nav-link[data-active]::after { transform: scaleX(1); }
+
+  .nav-caret {
+    width: 0.875rem;
+    height: 0.875rem;
+    transition: transform var(--duration-base) var(--ease-standard);
+  }
+  [aria-expanded="true"] > .nav-caret { transform: rotate(180deg); }
+
+  .dropdown-panel {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    inset-inline-start: 0;
+    z-index: 50;
+    min-width: 11rem;
+    padding: 0.375rem;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    background-color: var(--c-surface);
+    box-shadow: var(--shadow-overlay);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition:
+      opacity var(--duration-fast) var(--ease-standard),
+      transform var(--duration-fast) var(--ease-standard),
+      visibility 0s linear var(--duration-fast);
+  }
+  .dropdown-panel[data-open] {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity var(--duration-fast) var(--ease-standard),
+      transform var(--duration-fast) var(--ease-standard),
+      visibility 0s;
+  }
+  .dropdown-link {
+    display: flex;
+    align-items: center;
+    min-height: var(--control-h);
+    padding-inline: 0.875rem;
+    border-radius: var(--radius-md);
+    color: var(--c-ink);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .dropdown-link:hover { background-color: var(--c-sunken); }
+  .dropdown-link:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--c-focus); }
+  .dropdown-link[aria-current="page"] {
+    background-color: var(--c-brand-soft);
+    color: var(--c-brand-ink);
+  }
+
+  /* ---- Mobile drawer ------------------------------------------------------ */
+  .drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    visibility: hidden;
+    transition: visibility 0s linear var(--duration-slow);
+  }
+  .drawer[data-open] { visibility: visible; transition: visibility 0s; }
+
+  .drawer-scrim {
+    position: absolute;
+    inset: 0;
+    background-color: var(--c-scrim);
+    opacity: 0;
+    transition: opacity var(--duration-slow) var(--ease-standard);
+  }
+  .drawer[data-open] .drawer-scrim { opacity: 1; }
+
+  .drawer-panel {
+    --drawer-offset: 100%;
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    display: flex;
+    flex-direction: column;
+    /* Always leave a strip of scrim visible as an outside-tap target. */
+    width: min(24rem, calc(100% - 3rem));
+    background-color: var(--c-surface);
+    border-inline-start: 1px solid var(--c-line);
+    box-shadow: var(--shadow-overlay);
+    transform: translateX(var(--drawer-offset));
+    transition: transform var(--duration-slow) var(--ease-standard);
+  }
+  [dir="rtl"] .drawer-panel { --drawer-offset: -100%; }
+  .drawer[data-open] .drawer-panel { transform: none; }
+
+  .drawer-link {
+    display: flex;
+    align-items: center;
+    min-height: 3rem;
+    padding-inline: 0.875rem;
+    border-radius: var(--radius-md);
+    color: var(--c-ink);
+    font-size: var(--text-base);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .drawer-link:hover { background-color: var(--c-sunken); }
+  .drawer-link[data-active] { color: var(--c-brand-ink); }
+  .drawer-link:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--c-focus); }
+  .drawer-link[aria-current="page"] {
+    background-color: var(--c-brand-soft);
+    color: var(--c-brand-ink);
+    box-shadow: inset 3px 0 0 var(--c-brand-ink);
+  }
+  [dir="rtl"] .drawer-link[aria-current="page"] { box-shadow: inset -3px 0 0 var(--c-brand-ink); }
+
+  :root[data-scroll-locked] { overflow: hidden; }
+
+  /* ---- Footer ------------------------------------------------------------- */
+  .site-footer {
+    border-top: 1px solid var(--c-footer-line);
+    background-color: var(--c-footer-bg);
+    color: var(--c-footer-ink);
+  }
+  .site-footer :where(h2, h3) { color: var(--c-footer-ink); }
+  .footer-heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--c-footer-muted);
+  }
+  .footer-link {
+    color: var(--c-footer-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-standard);
+  }
+  .footer-link:hover { color: var(--c-footer-ink); text-decoration: underline; }
+  .footer-link:focus-visible { outline-color: var(--c-footer-ink); }
+  .footer-contact { display: flex; align-items: flex-start; gap: 0.625rem; }
+  .footer-icon { width: 1.125rem; height: 1.125rem; margin-top: 0.125rem; flex-shrink: 0; color: var(--c-footer-ink); }
+  .social-link {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--c-footer-line);
+    border-radius: 9999px;
+    color: var(--c-footer-muted);
+    transition: color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard);
+  }
+  .social-link svg { width: 1.25rem; height: 1.25rem; }
+  .social-link:hover { color: var(--c-footer-ink); border-color: var(--c-footer-ink); background-color: color-mix(in srgb, var(--c-footer-ink) 12%, transparent); }
+  .social-link:focus-visible { outline: 2px solid var(--c-footer-ink); outline-offset: 2px; color: var(--c-footer-ink); }
+  .footer-placeholder {
+    color: var(--c-footer-muted);
+    font-style: italic;
+  }
+}
+
+/* 1024–1279px: the full desktop nav (incl. Dashboard) only fits if the header
+   logo drops its small subtitle and nav links tighten slightly. Unlayered so it outranks the subtitle's own
+   display utility. */
+@media (min-width: 64rem) and (max-width: 79.99rem) {
+  .site-header .brand-subtitle { display: none; }
+  .site-header .nav-link { --nav-px: 0.375rem; }
+}

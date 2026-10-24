@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <!-- @include head title="Services" description="Non-emergency medical transportation for appointments, recurring treatment, wheelchair users where available, and the journey home from hospital where offered." robots="index, follow" -->
+</head>
+<body data-page="services">
+  <!-- @include header -->
+
+  <main id="main">
+
+    <!-- Hero: narrow text + service index beside a dominant landscape photo -->
+    <section class="pb-12 pt-10 md:pt-14 lg:pb-16 lg:pt-16" aria-labelledby="services-title">
+      <!-- DOM order (text, photo, index) is the phone order; on desktop the
+           index drops to the bottom of the text column beside the photo. -->
+      <div class="container-site grid gap-10 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-8 lg:gap-y-0">
+        <div class="flex flex-col lg:col-span-4 lg:row-start-1">
+          <p class="eyebrow">Services</p>
+          <h1 id="services-title" class="mt-4 text-5xl lg:text-3xl xl:text-[2.75rem] xl:leading-[1.08]">Medical transportation services</h1>
+          <p class="mt-5 text-ink-muted">Planned rides to and from healthcare, matched to the passenger’s needs.</p>
+          <a class="btn btn-primary btn-lg mt-8 self-start max-sm:self-stretch" href="contact.html">Discuss your ride needs</a>
+        </div>
+
+        <figure class="lg:col-span-8 lg:col-start-5 lg:row-span-2 lg:row-start-1">
+          <div class="media aspect-[4/3] sm:aspect-[3/2]">
+            <img src="assets/images/services/companion-wheelchair-home-1600.webp"
+              srcset="assets/images/services/companion-wheelchair-home-800.webp 800w, assets/images/services/companion-wheelchair-home-1600.webp 1600w"
+              sizes="(min-width: 64rem) 62vw, 100vw" width="1600" height="1067"
+              class="object-[55%_50%]"
+              alt="An older man in a suit stands behind a woman seated in a wheelchair on the lawn outside a white house."
+              fetchpriority="high">
+          </div>
+          <figcaption class="figure-caption mt-4">Door-to-door help is arranged around each passenger’s mobility.</figcaption>
+        </figure>
+
+        <nav class="svc-index lg:col-span-4 lg:col-start-1 lg:row-start-2 lg:self-end lg:mt-10" aria-label="Services on this page">
+          <a href="#appointments">Appointments<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4"/></svg></a>
+          <a href="#recurring">Recurring treatment<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4"/></svg></a>
+          <a href="#discharge">Returning home<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4"/></svg></a>
+          <a href="#wheelchair">Wheelchair-accessible<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4"/></svg></a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 1 · Service overview -->
+    <section class="border-y border-line bg-surface py-12 md:py-16" aria-labelledby="overview-title">
+      <div class="container-site grid gap-6 lg:grid-cols-12 lg:gap-8">
+        <h2 id="overview-title" class="eyebrow lg:col-span-3 lg:pt-2">Overview</h2>
+        <p class="svc-statement lg:col-span-8">
+          We provide scheduled, non-emergency transportation for people who need a little more support getting to and from healthcare: one-off appointments, regular treatment, and other trips arranged around a medical visit.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2 · Services mosaic -->
+    <section class="section" aria-labelledby="services-list-title">
+      <div class="container-site">
+        <h2 id="services-list-title" class="max-w-xl text-4xl">Ways we can help you travel</h2>
+
+        <div class="svc-mosaic mt-12 lg:mt-16">
+          <article id="appointments" class="svc-tile svc-tile-appointments" aria-labelledby="appointments-title">
+            <div class="media aspect-[16/9]">
+              <img src="assets/images/services/clinic-waiting-corridor-1600.webp"
+                srcset="assets/images/services/clinic-waiting-corridor-800.webp 800w, assets/images/services/clinic-waiting-corridor-1600.webp 1600w"
+                sizes="(min-width: 64rem) 55vw, 100vw" width="1600" height="1076" loading="lazy" decoding="async"
+                alt="Black-and-white photo of patients seated along both walls of a long clinic corridor, waiting to be seen.">
+            </div>
+            <h3 id="appointments-title" class="mt-6">Medical and specialist appointments</h3>
+            <p class="mt-2 max-w-lg text-ink-muted">A ride to check-ups, specialist visits, scans and tests, with the trip home planned at the same time.</p>
+          </article>
+
+          <article id="recurring" class="svc-tile svc-tile-recurring" aria-labelledby="recurring-title">
+            <div class="media aspect-[4/5] lg:aspect-[3/4]">
+              <img src="assets/images/services/walker-building-entrance-1600.webp"
+                srcset="assets/images/services/walker-building-entrance-800.webp 800w, assets/images/services/walker-building-entrance-1600.webp 1600w"
+                sizes="(min-width: 64rem) 30vw, 100vw" width="1600" height="1067" loading="lazy" decoding="async"
+                class="object-[62%_50%]"
+                alt="An older woman in a hat and scarf stands with her walker outside a building with tall windows.">
+            </div>
+            <h3 id="recurring-title" class="mt-6">Recurring treatment</h3>
+            <p class="mt-2 text-ink-muted">Regular rides for ongoing care such as therapy or treatment sessions, set up as a schedule rather than booked one by one.</p>
+          </article>
+
+          <article id="discharge" class="svc-tile svc-tile-discharge" aria-labelledby="discharge-title">
+            <div class="media aspect-[21/9]">
+              <img src="assets/images/services/path-toward-home-1600.webp"
+                srcset="assets/images/services/path-toward-home-800.webp 800w, assets/images/services/path-toward-home-1600.webp 1600w"
+                sizes="(min-width: 64rem) 55vw, 100vw" width="1600" height="1067" loading="lazy" decoding="async"
+                class="object-[40%_60%]"
+                alt="Seen from behind, an older woman sits in a wheelchair on a sunny path leading toward houses.">
+            </div>
+            <p class="svc-avail mt-6">Where offered</p>
+            <h3 id="discharge-title" class="mt-2">Returning home from hospital</h3>
+            <p class="mt-2 max-w-lg text-ink-muted">A calm ride home after a hospital stay or outpatient procedure, planned around the discharge time you’re given.</p>
+          </article>
+
+          <article id="wheelchair" class="svc-tile svc-tile-wheelchair grid items-center gap-6 border-t border-line pt-10 md:grid-cols-12 md:gap-8" aria-labelledby="wheelchair-title">
+            <div class="media aspect-[4/3] md:col-span-5">
+              <img src="assets/images/services/wheelchair-in-car-boot-1600.webp"
+                srcset="assets/images/services/wheelchair-in-car-boot-800.webp 800w, assets/images/services/wheelchair-in-car-boot-1600.webp 1600w"
+                sizes="(min-width: 48rem) 40vw, 100vw" width="1600" height="1067" loading="lazy" decoding="async"
+                alt="The open boot of a car with a folded wheelchair stowed inside, parked beside a lake.">
+            </div>
+            <div class="md:col-span-6 md:col-start-7">
+              <p class="svc-avail">Available by arrangement</p>
+              <h3 id="wheelchair-title" class="mt-2">Wheelchair-accessible transportation</h3>
+              <p class="mt-2 max-w-lg text-ink-muted">For passengers who travel in their own wheelchair or need a folding chair carried. Accessible vehicles depend on availability in your area, so we confirm what’s possible when you enquire.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 · Choosing the right ride -->
+    <section class="section-tight bg-sunken" aria-labelledby="prepare-title">
+      <div class="container-site">
+        <div class="max-w-2xl">
+          <h2 id="prepare-title" class="text-3xl">Choosing the right ride</h2>
+          <p class="mt-3 text-ink-muted">Have these four details ready when you get in touch. They tell us which service fits.</p>
+        </div>
+        <ol class="prep-steps mt-10">
+          <li>
+            <span class="prep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
+            <h3 class="mt-4 font-sans text-base font-bold">Appointment date and time</h3>
+            <p class="mt-1 text-sm text-ink-muted">And how early the clinic asks you to arrive.</p>
+          </li>
+          <li>
+            <span class="prep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.25"/></svg></span>
+            <h3 class="mt-4 font-sans text-base font-bold">Pickup and destination</h3>
+            <p class="mt-1 text-sm text-ink-muted">Including the building entrance and any steps.</p>
+          </li>
+          <li>
+            <span class="prep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4.5" r="1.75"/><path d="M11 7.5v6h5l2 5.5M11 10.5H7.5"/><path d="M8.5 13.2a5 5 0 1 0 6.7 6.3"/></svg></span>
+            <h3 class="mt-4 font-sans text-base font-bold">Mobility needs</h3>
+            <p class="mt-1 text-sm text-ink-muted">Wheelchair, walker, or help to and from the door.</p>
+          </li>
+          <li>
+            <span class="prep-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 8.5M20 4v4.5h-4.5M20 12a8 8 0 0 1-13.7 5.6L4 15.5M4 20v-4.5h4.5"/></svg></span>
+            <h3 class="mt-4 font-sans text-base font-bold">Return or regular trips</h3>
+            <p class="mt-1 text-sm text-ink-muted">Whether you need a ride home or a recurring schedule.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4 · Compact enquiry band -->
+    <section class="band-inverse" aria-labelledby="services-cta-title">
+      <div class="container-site flex flex-col gap-6 py-12 md:flex-row md:items-center md:justify-between md:py-14">
+        <div>
+          <h2 id="services-cta-title" class="text-3xl">Not sure which service fits?</h2>
+          <p class="mt-2 text-inverse-muted">Tell us about the trip and we’ll talk you through the options.</p>
+        </div>
+        <div class="flex flex-wrap gap-3 max-sm:*:w-full">
+          <a class="btn btn-inverse btn-lg" href="contact.html">Discuss your ride needs</a>
+          <a class="btn btn-inverse-outline btn-lg" href="pricing.html">How pricing works</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- @include footer -->
+</body>
+</html>

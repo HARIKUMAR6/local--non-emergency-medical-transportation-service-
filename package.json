@@ -1,0 +1,22 @@
+{
+  "name": "hearthway-nemt",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Static marketing and patient website for a non-emergency medical transportation service.",
+  "type": "module",
+  "scripts": {
+    "build:html": "node scripts/build.mjs",
+    "build:css": "tailwindcss -i src/css/input.css -o dist/assets/css/styles.css --minify",
+    "build": "npm run build:html && npm run build:css",
+    "dev": "node scripts/dev.mjs",
+    "preview": "node scripts/serve.mjs",
+    "test": "node scripts/test-nav.mjs && node scripts/audit-links.mjs"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.3",
+    "tailwindcss": "4.3.3"
+  }
+}

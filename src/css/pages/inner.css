@@ -1,0 +1,354 @@
+/* ==========================================================================
+   Inner pages: Services + Pricing
+   Each composition here is used on one page only, so the two pages (and the
+   homepages) never share a layout. Logical properties throughout for RTL.
+   ========================================================================== */
+
+@layer components {
+  /* ------------------------------------------------------------ Services */
+
+  /* Hero index: numbered jump links to each service */
+  .svc-index { counter-reset: svc; border-top: 1px solid var(--c-line-strong); }
+  .svc-index a {
+    counter-increment: svc;
+    display: grid;
+    grid-template-columns: 2.25rem 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    border-bottom: 1px solid var(--c-line);
+    color: var(--c-ink);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-standard);
+  }
+  .svc-index a::before {
+    content: counter(svc, decimal-leading-zero);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--c-accent);
+  }
+  .svc-index a svg { width: 1rem; height: 1rem; color: var(--c-ink-subtle); transition: translate var(--duration-base) var(--ease-standard); }
+  .svc-index a:hover { color: var(--c-brand-ink); }
+  .svc-index a:hover svg { translate: 0 2px; }
+  .svc-index a:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--c-focus); }
+
+  /* Overview statement */
+  .svc-statement {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    line-height: 1.35;
+    color: var(--c-ink);
+    text-wrap: pretty;
+  }
+
+  /* Service mosaic: wide + tall + panoramic + horizontal band */
+  .svc-mosaic { display: grid; gap: 3.5rem; }
+  @media (min-width: 64rem) {
+    .svc-mosaic {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 2rem;
+      row-gap: 4rem;
+    }
+    .svc-tile-appointments { grid-column: 1 / span 7; grid-row: 1; }
+    .svc-tile-recurring { grid-column: 9 / span 4; grid-row: 1 / span 2; align-self: center; }
+    .svc-tile-discharge { grid-column: 1 / span 7; grid-row: 2; }
+    .svc-tile-wheelchair { grid-column: 1 / -1; grid-row: 3; }
+  }
+  .svc-tile { scroll-margin-top: calc(var(--header-h) + 1.5rem); }
+  .svc-tile h3 { font-size: var(--text-2xl); }
+  .svc-avail {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--c-ink-subtle);
+  }
+  .svc-avail::before {
+    content: "";
+    width: 1.25rem;
+    height: 1px;
+    background-color: currentColor;
+  }
+
+  /* "Have this ready" sequence */
+  .prep-steps { display: grid; gap: 1.75rem; }
+  @media (min-width: 40rem) { .prep-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 64rem) {
+    .prep-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
+    .prep-steps > li { position: relative; padding-inline-end: 2.5rem; }
+    .prep-steps > li:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 1.25rem;
+      inset-inline-end: 0.875rem;
+      width: 0.625rem;
+      height: 0.625rem;
+      border-top: 2px solid var(--c-line-strong);
+      border-inline-end: 2px solid var(--c-line-strong);
+      rotate: 45deg;
+    }
+    [dir="rtl"] .prep-steps > li:not(:last-child)::after { rotate: -45deg; }
+  }
+  .prep-icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-md);
+    background-color: var(--c-brand-soft);
+    color: var(--c-brand-ink);
+  }
+  .prep-icon svg { width: 1.5rem; height: 1.5rem; }
+
+  /* ------------------------------------------------------------- Pricing */
+
+  /* Quote equation diagram */
+  .quote-eq {
+    display: grid;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  @media (min-width: 40rem) {
+    .quote-eq { grid-template-columns: 1fr auto 1fr auto 1fr auto 1.2fr; }
+  }
+  .quote-term {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.875rem;
+    row-gap: 0.25rem;
+    align-content: start;
+    padding: 1rem 1.125rem;
+    border: 1px solid var(--c-line-strong);
+    border-radius: var(--radius-md);
+    background-color: var(--c-surface);
+  }
+  .quote-term svg { grid-row: span 2; width: 1.375rem; height: 1.375rem; color: var(--c-brand-ink); }
+  @media (min-width: 40rem) {
+    /* Side by side in the equation: stack icon above the text */
+    .quote-term { grid-template-columns: 1fr; }
+    .quote-term svg { grid-row: auto; margin-block-end: 0.25rem; }
+  }
+  .quote-term strong { font-size: var(--text-sm); }
+  .quote-term span { font-size: var(--text-xs); line-height: 1.45; color: var(--c-ink-muted); }
+  .quote-op {
+    align-self: center;
+    justify-self: center;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    line-height: 1;
+    color: var(--c-ink-subtle);
+  }
+  .quote-result {
+    border-color: var(--c-brand);
+    background-color: var(--c-brand);
+    color: var(--c-on-brand);
+  }
+  .quote-result svg,
+  .quote-result span { color: var(--c-on-brand); }
+
+  /* Itemised factor sheet */
+  .factor-sheet {
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    background-color: var(--c-surface);
+  }
+  .factor-sheet-head {
+    display: none;
+    padding: 0.875rem 1.5rem;
+    border-bottom: 1px solid var(--c-line-strong);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--c-ink-subtle);
+  }
+  .factor-row {
+    display: grid;
+    gap: 0.5rem 2rem;
+    padding: 1.25rem 1.5rem;
+  }
+  .factor-row + .factor-row { border-top: 1px dashed var(--c-line-strong); }
+  .factor-name {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-weight: 700;
+  }
+  .factor-name::before {
+    content: counter(factor, decimal-leading-zero);
+    counter-increment: factor;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--c-accent);
+  }
+  .factor-list { counter-reset: factor; }
+  .factor-ask {
+    font-size: var(--text-sm);
+    color: var(--c-ink-muted);
+  }
+  .factor-ask-label { font-weight: 700; color: var(--c-ink); }
+  @media (min-width: 48rem) {
+    .factor-sheet-head,
+    .factor-row { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr) minmax(0, 1.2fr); }
+    .factor-sheet-head { display: grid; gap: 2rem; }
+    .factor-ask-label { display: none; }
+  }
+}
+
+/* ==========================================================================
+   About + Contact
+   ========================================================================== */
+
+@layer components {
+  /* Shared hero frame: About and Contact heroes have different layouts but
+     the same height at every breakpoint. Content is sized to fit inside. */
+  .page-hero {
+    display: grid;
+    align-items: center;
+    min-height: 40rem;
+    padding-block: 2.5rem;
+  }
+  @media (min-width: 64rem) {
+    .page-hero { min-height: 34rem; }
+  }
+
+  /* About hero: two photos of different heights, bottom-aligned */
+  .about-diptych {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: end;
+    gap: 1rem;
+    height: 14rem;
+  }
+  .about-diptych > .media { height: 100%; }
+  .about-diptych > .media:first-child { display: none; }
+  @media (min-width: 40rem) {
+    .about-diptych { grid-template-columns: 0.8fr 1.2fr; height: 16rem; }
+    .about-diptych > .media:first-child { display: block; }
+    .about-diptych > .media:last-child { height: 72%; }
+  }
+  @media (min-width: 64rem) {
+    .about-diptych { height: 29rem; gap: 1.25rem; }
+  }
+
+  /* Principles: four items, four treatments */
+  .principles { display: grid; gap: 1.5rem; }
+  @media (min-width: 64rem) {
+    .principles { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2rem; align-items: stretch; }
+    .principle-dignity { grid-column: 1 / span 7; }
+    .principle-communication { grid-column: 8 / span 5; grid-row: span 2; }
+    .principle-planning { grid-column: 1 / span 3; }
+    .principle-families { grid-column: 4 / span 4; }
+  }
+
+  /* Coordination stages: a bar that fills a third more at each stage */
+  .coord-stages { display: grid; gap: 2rem; counter-reset: coord; }
+  @media (min-width: 48rem) { .coord-stages { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; } }
+  .coord-stages > li { counter-increment: coord; }
+  .coord-stages > li:nth-child(1) { --fill: 33.4%; }
+  .coord-stages > li:nth-child(2) { --fill: 66.7%; }
+  .coord-stages > li:nth-child(3) { --fill: 100%; }
+  .coord-bar {
+    position: relative;
+    height: 0.375rem;
+    border-radius: 999px;
+    background-color: var(--c-line);
+    overflow: hidden;
+  }
+  .coord-bar::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: var(--fill);
+    border-radius: inherit;
+    background-color: var(--c-brand-ink);
+  }
+  .coord-num::before {
+    content: "Stage " counter(coord);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--c-ink-subtle);
+  }
+
+  /* About closing: large serif link rows */
+  .next-links > li { border-top: 1px solid var(--c-line-strong); }
+  .next-links > li:last-child { border-bottom: 1px solid var(--c-line-strong); }
+  .next-links a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 0.25rem 1.5rem;
+    padding-block: 1.25rem;
+    color: var(--c-ink);
+    text-decoration: none;
+  }
+  .next-links a:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--c-focus); }
+  .next-links-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    transition: color var(--duration-fast) var(--ease-standard);
+  }
+  .next-links a:hover .next-links-title { color: var(--c-brand-ink); }
+  .next-links-desc { grid-column: 1; font-size: var(--text-sm); color: var(--c-ink-muted); }
+  .next-links svg {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--c-brand-ink);
+    transition: translate var(--duration-base) var(--ease-standard);
+  }
+  .next-links a:hover svg { translate: 4px 0; }
+  [dir="rtl"] .next-links a:hover svg { translate: -4px 0; }
+
+  /* Closing links: three columns under the heading from lg up */
+  @media (min-width: 64rem) {
+    .next-links-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+    .next-links-row > li:last-child { border-bottom: 0; }
+  }
+
+  /* Contact hero: boxed jump list */
+  .help-links {
+    border: 1px solid var(--c-line-strong);
+    border-radius: var(--radius-lg);
+    background-color: var(--c-surface);
+  }
+  .help-links li + li { border-top: 1px solid var(--c-line); }
+  .help-links a {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 4rem;
+    padding-inline: 1.25rem;
+    color: var(--c-ink);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .help-links a:hover { color: var(--c-brand-ink); }
+  .help-links a:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--c-focus); border-radius: var(--radius-lg); }
+  .help-links .help-icon { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: var(--radius-md); background-color: var(--c-brand-soft); color: var(--c-brand-ink); }
+  .help-links svg { width: 1.25rem; height: 1.25rem; }
+  .help-links small { display: block; font-size: var(--text-xs); font-weight: 400; color: var(--c-ink-muted); }
+
+  /* Map embed */
+  .map-frame {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--c-line-strong);
+    border-radius: var(--radius-lg);
+    background-color: var(--c-sunken);
+  }
+  @media (min-width: 48rem) { .map-frame { aspect-ratio: 16 / 7; } }
+  .map-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+}

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <!-- @include head title="Contact" description="Send Hearthway an enquiry about non-emergency medical transportation, and see what details to include when asking about a ride." robots="index, follow" -->
+  <script type="module" src="assets/js/contact.js"></script>
+</head>
+<body data-page="contact">
+  <!-- @include header -->
+
+  <main id="main">
+
+    <!-- 1 · Hero: headline and jump links beside a photo -->
+    <section class="page-hero bg-sunken" aria-labelledby="contact-title">
+      <div class="container-site grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-8">
+        <div class="lg:col-span-6">
+          <p class="eyebrow">Contact</p>
+          <h1 id="contact-title" class="mt-4 text-4xl lg:text-5xl">Ask us about a ride</h1>
+          <p class="mt-5 max-w-md text-ink-muted">Tell us about the trip, and we’ll help you work out what’s possible.</p>
+          <p class="mt-6 max-w-md border-s-2 border-accent ps-4 text-sm text-ink-muted"><strong class="text-ink">Not for emergencies.</strong> In a medical emergency, call your local emergency number.</p>
+          <nav class="mt-6" aria-label="On this page">
+            <ul class="flex flex-wrap gap-2">
+              <li><a class="btn btn-secondary" href="#schedule">Send an enquiry</a></li>
+              <li><a class="btn btn-secondary" href="#guidance">What to include</a></li>
+              <li><a class="btn btn-secondary" href="#map">Service area map</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="media aspect-[16/10] max-lg:max-h-80 lg:col-span-6 lg:aspect-[5/4]">
+          <img src="assets/images/home-2/warm-greeting-outdoors-1200.webp"
+            srcset="assets/images/home-2/warm-greeting-outdoors-800.webp 800w, assets/images/home-2/warm-greeting-outdoors-1200.webp 1200w"
+            sizes="(min-width: 64rem) 45vw, 100vw" width="1200" height="1800" loading="eager"
+            class="object-[50%_25%]"
+            alt="An older couple laugh together outside a brick house, holding hands, one seated on a walker.">
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 · Enquiry form (id="schedule" is the target of every "Schedule a Ride" link) -->
+    <section id="schedule" class="section scroll-mt-(--header-h)" tabindex="-1" aria-labelledby="enquiry-title">
+      <div class="container-site max-w-[56rem]">
+        <div class="mb-6 sm:mb-8">
+          <h2 id="enquiry-title" class="text-3xl">Send an enquiry</h2>
+          <p class="mt-3 max-w-xl text-ink-muted">Ask about arranging a ride, pricing or anything else. Phone is optional.</p>
+        </div>
+
+        <div>
+          <form id="enquiry-form" class="grid gap-5 rounded-lg border border-line bg-surface p-5 sm:grid-cols-2 sm:gap-6 sm:p-8" novalidate>
+            <div class="form-status sm:col-span-2" role="status" aria-live="polite" data-form-status></div>
+
+            <div class="field">
+              <label class="field-label" for="enquiry-name">Name</label>
+              <input class="input" id="enquiry-name" name="name" type="text" autocomplete="name" aria-describedby="enquiry-name-error" required>
+              <p class="field-error" id="enquiry-name-error" data-error-for="name" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="enquiry-email">Email</label>
+              <input class="input" id="enquiry-email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" aria-describedby="enquiry-email-error" required>
+              <p class="field-error" id="enquiry-email-error" data-error-for="email" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="enquiry-phone">Phone <span class="font-normal text-ink-subtle">(optional)</span></label>
+              <input class="input" id="enquiry-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="enquiry-phone-error">
+              <p class="field-error" id="enquiry-phone-error" data-error-for="phone" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="enquiry-type">Enquiry type</label>
+              <select class="select" id="enquiry-type" name="type" aria-describedby="enquiry-type-error" required>
+                <option value="">Choose a topic</option>
+                <option value="ride">Arranging a ride</option>
+                <option value="recurring">Recurring or regular rides</option>
+                <option value="accessibility">Accessibility or mobility needs</option>
+                <option value="pricing">Pricing or a quote</option>
+                <option value="other">Something else</option>
+              </select>
+              <p class="field-error" id="enquiry-type-error" data-error-for="type" hidden></p>
+            </div>
+            <div class="field sm:col-span-2">
+              <label class="field-label" for="enquiry-message">Message</label>
+              <textarea class="textarea" id="enquiry-message" name="message" maxlength="1000" aria-describedby="enquiry-message-hint enquiry-message-error" required></textarea>
+              <p class="field-hint" id="enquiry-message-hint">Please don’t include medical information.</p>
+              <p class="field-error" id="enquiry-message-error" data-error-for="message" hidden></p>
+            </div>
+            <div class="sm:col-span-2">
+              <button type="submit" class="btn btn-primary btn-lg max-sm:w-full">Send enquiry</button>
+            </div>
+          </form>
+
+          <div class="rounded-lg border border-line-strong bg-surface p-6 sm:p-8" data-enquiry-confirmation hidden>
+            <h3 class="text-2xl outline-none" tabindex="-1">Thanks, <span data-enquiry-name></span>. Here’s what you wrote.</h3>
+            <dl class="mt-6 grid gap-x-8 gap-y-4 text-sm sm:grid-cols-2" data-enquiry-summary></dl>
+            <div class="notice mt-6">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.01"/></svg>
+              <p><strong class="text-ink">Enquiry not sent.</strong> This website is a frontend demonstration, so your message has not been sent to anyone and no reply will follow. Please don’t rely on it for an upcoming appointment.</p>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <button type="button" class="btn btn-secondary" data-enquiry-edit>Edit message</button>
+              <button type="button" class="btn btn-ghost" data-enquiry-reset>New enquiry</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 · Contact information and enquiry guidance -->
+    <section id="guidance" class="section-tight border-t border-line bg-surface scroll-mt-(--header-h)" aria-labelledby="guidance-title">
+      <div class="container-site grid gap-10 lg:grid-cols-12 lg:gap-8">
+        <div class="lg:col-span-4">
+          <h2 id="guidance-title" class="text-3xl">What to include</h2>
+          <p class="mt-3 text-ink-muted">If you’re asking about a ride, these details help us reply with something useful.</p>
+          <p class="mt-6 rounded-md bg-sunken p-4 text-sm text-ink-muted"><strong class="text-ink">Phone and email:</strong> direct contact details haven’t been published on this website yet, so please use the form.</p>
+        </div>
+        <ul class="grid gap-x-8 sm:grid-cols-2 lg:col-span-7 lg:col-start-6">
+          <li class="flex gap-3 border-b border-line py-4"><svg class="mt-0.5 size-5 shrink-0 text-brand-ink" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span><strong>Who is travelling</strong><br><span class="text-sm text-ink-muted">Yourself, or someone you care for</span></span></li>
+          <li class="flex gap-3 border-b border-line py-4"><svg class="mt-0.5 size-5 shrink-0 text-brand-ink" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span><strong>Appointment date and time</strong><br><span class="text-sm text-ink-muted">And when you need to arrive</span></span></li>
+          <li class="flex gap-3 border-b border-line py-4"><svg class="mt-0.5 size-5 shrink-0 text-brand-ink" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span><strong>Pickup and destination</strong><br><span class="text-sm text-ink-muted">Town or area is enough to start</span></span></li>
+          <li class="flex gap-3 border-b border-line py-4"><svg class="mt-0.5 size-5 shrink-0 text-brand-ink" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span><strong>Mobility needs</strong><br><span class="text-sm text-ink-muted">Wheelchair, walker or help at the door</span></span></li>
+          <li class="flex gap-3 border-b border-line py-4"><svg class="mt-0.5 size-5 shrink-0 text-brand-ink" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span><strong>Return or regular trips</strong><br><span class="text-sm text-ink-muted">A ride home, or a recurring schedule</span></span></li>
+          <li class="flex gap-3 border-b border-line py-4"><svg class="mt-0.5 size-5 shrink-0 text-brand-ink" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg><span><strong>How to reach you</strong><br><span class="text-sm text-ink-muted">Your preferred way to be contacted</span></span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4 · Interactive map (neutral view, no business location) -->
+    <section id="map" class="section-tight scroll-mt-(--header-h)" aria-labelledby="map-title">
+      <div class="container-site">
+        <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-10">
+          <div class="max-w-2xl">
+            <h2 id="map-title" class="text-3xl">Service area map</h2>
+            <p class="mt-3 text-ink-muted">Our service area and office address haven’t been published yet, so this interactive map shows a general view only. It does not mark or identify a business location. Ask about coverage for your trip in your enquiry.</p>
+          </div>
+          <a class="link-arrow shrink-0" href="https://www.openstreetmap.org/#map=2/20/12" target="_blank" rel="noopener">
+            Open in OpenStreetMap<span class="sr-only"> (opens in a new tab)</span>
+            <svg class="icon-directional" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10h12M11 5l5 5-5 5"/></svg>
+          </a>
+        </div>
+        <div class="map-frame mt-8">
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-150%2C-50%2C150%2C72&amp;layer=mapnik"
+            title="Interactive OpenStreetMap showing a general world view, with no business location marked"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <p class="mt-3 text-xs text-ink-subtle">Map data © OpenStreetMap contributors.</p>
+      </div>
+    </section>
+
+    <!-- 5 · Closing guidance -->
+    <section class="border-t border-line" aria-labelledby="contact-next-title">
+      <div class="container-site flex flex-col gap-5 py-10 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h2 id="contact-next-title" class="font-sans text-lg font-bold">Not ready to ask yet?</h2>
+          <p class="mt-1 text-sm text-ink-muted">See which service suits the trip, or how a quote is worked out.</p>
+        </div>
+        <div class="flex flex-wrap gap-3 max-sm:*:w-full">
+          <a class="btn btn-secondary" href="services.html">Compare services</a>
+          <a class="btn btn-secondary" href="pricing.html">How pricing works</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- @include footer -->
+</body>
+</html>

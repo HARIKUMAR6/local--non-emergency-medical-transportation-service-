@@ -1,0 +1,415 @@
+/* ==========================================================================
+   Homepage compositions (Home 1 + Home 2)
+   Built only from the global tokens; every rule uses logical properties so
+   layouts mirror correctly in RTL.
+   ========================================================================== */
+
+@layer components {
+  /* ---------------------------------------------------------------- Home 1 */
+
+  /* Hero image with an offset sage field behind it */
+  .hero-frame {
+    position: relative;
+    isolation: isolate;
+  }
+  .hero-frame::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset-block: 12% -1.5rem;
+    inset-inline-start: -1.5rem;
+    width: 58%;
+    background-color: var(--c-sage-soft);
+    border-radius: var(--radius-md);
+  }
+  @media (max-width: 47.99rem) {
+    .hero-frame::before { inset-inline-start: -0.75rem; inset-block-end: -0.75rem; }
+  }
+
+  /* Flex keeps the separator dot on the inline-start side in both directions */
+  .service-ribbon li {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .service-ribbon li + li::before {
+    content: "";
+    flex: 0 0 0.3125rem;
+    height: 0.3125rem;
+    border-radius: 50%;
+    background-color: var(--c-sage);
+  }
+
+  /* Principles: roman numerals hanging in the inline-start margin */
+  .principle-list > li {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding-block: 2rem;
+    border-top: 1px solid var(--c-line-strong);
+  }
+  .principle-list > li:last-child { border-bottom: 1px solid var(--c-line-strong); }
+  .principle-num {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-style: italic;
+    line-height: 1;
+    color: var(--c-accent);
+  }
+
+  .service-index {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-style: italic;
+    color: var(--c-accent);
+  }
+
+  /* Journey timeline (vertical, on the inverse band) */
+  .journey-list { counter-reset: journey; }
+  .journey-list > li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 1.25rem;
+    padding-block-end: 3.5rem;
+  }
+  .journey-list > li:last-child { padding-block-end: 0; }
+  .journey-list > li::before {
+    counter-increment: journey;
+    content: counter(journey, decimal-leading-zero);
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    line-height: 1;
+    color: var(--c-inverse-accent);
+  }
+  .journey-list > li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 1.5rem;
+    top: 3.75rem;
+    bottom: 1rem;
+    width: 1px;
+    background-color: var(--c-inverse-line);
+  }
+
+  /* Proof points: ruled two-column definition list */
+  .proof-list { border-top: 1px solid var(--c-line-strong); }
+  .proof-list > div {
+    padding-block: 1.75rem;
+    border-bottom: 1px solid var(--c-line);
+  }
+  @media (min-width: 40rem) {
+    .proof-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 2.5rem; }
+  }
+
+  /* Closing section: large arch drawn from the brand mark */
+  .closing-arch {
+    position: absolute;
+    inset-inline: 0;
+    margin-inline: auto;
+    top: 0;
+    width: min(60rem, 96%);
+    height: 100%;
+    border: 1px solid var(--c-sage);
+    border-bottom: 0;
+    border-radius: 30rem 30rem 0 0;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  @media (max-width: 47.99rem) {
+    .closing-arch { display: none; }
+  }
+
+  /* ---------------------------------------------------------------- Home 2 */
+
+  /* Illustrative trip-plan card that overlaps the hero image */
+  .plan-card {
+    position: relative;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    background-color: var(--c-surface);
+    box-shadow: var(--shadow-overlay);
+  }
+  .plan-steps > li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 5.25rem 1fr;
+    gap: 0.75rem;
+    padding-block: 0.625rem;
+  }
+  .plan-steps > li + li { border-top: 1px dashed var(--c-line); }
+  .plan-time {
+    unicode-bidi: plaintext; /* keep "9:10 AM" intact in RTL */
+    font-variant-numeric: tabular-nums;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--c-brand-ink);
+  }
+
+  /* Route-style stages with a connecting track */
+  .route-steps { counter-reset: stage; }
+  .route-steps > li { position: relative; counter-increment: stage; }
+  .route-node {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid var(--c-brand-ink);
+    border-radius: 50%;
+    background-color: var(--c-canvas);
+    color: var(--c-brand-ink);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .route-node::before { content: counter(stage); }
+  .route-steps > li:last-child .route-node {
+    background-color: var(--c-brand);
+    border-color: var(--c-brand);
+    color: var(--c-on-brand);
+  }
+  /* Vertical track on small screens */
+  .route-steps > li:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: calc(1.5rem - 1px);
+    top: 3rem;
+    bottom: -2.5rem;
+    border-inline-start: 2px dashed var(--c-line-strong);
+  }
+  @media (min-width: 64rem) {
+    .route-steps > li:not(:last-child)::before {
+      inset-inline-start: 3rem;
+      inset-inline-end: -2.5rem;
+      top: calc(1.5rem - 1px);
+      bottom: auto;
+      border-inline-start: 0;
+      border-top: 2px dashed var(--c-line-strong);
+    }
+  }
+  .route-tip {
+    border-inline-start: 3px solid var(--c-sage);
+    padding-inline-start: 1rem;
+    color: var(--c-ink-muted);
+    font-size: var(--text-sm);
+  }
+
+  /* Service selector tabs */
+  .service-tab {
+    display: grid;
+    gap: 0.25rem;
+    width: 100%;
+    min-height: 4.5rem;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--c-line-strong);
+    border-inline-start: 3px solid transparent;
+    color: var(--c-ink-muted);
+    text-align: start;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
+  }
+  .service-tab:last-child { border-bottom: 1px solid var(--c-line-strong); }
+  .service-tab:hover { background-color: var(--c-surface); color: var(--c-ink); }
+  .service-tab:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--c-focus); }
+  .service-tab[aria-selected="true"] {
+    border-inline-start-color: var(--c-brand-ink);
+    background-color: var(--c-surface);
+    color: var(--c-ink);
+  }
+  .service-tab-title { font-size: var(--text-lg); font-weight: 700; line-height: 1.3; }
+  .service-tab[aria-selected="true"] .service-tab-title { color: var(--c-brand-ink); }
+  .service-tab-sub { font-size: var(--text-sm); }
+
+  /* Sample week schedule */
+  .week-strip {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .week-day {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    padding-block: 0.75rem;
+    border-top: 1px solid var(--c-line);
+  }
+  .week-day-name {
+    padding-block-start: 0.5rem;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--c-ink-subtle);
+  }
+  @media (min-width: 48rem) {
+    .week-strip { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; }
+    .week-day {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+      min-height: 10rem;
+      padding: 0.75rem;
+      border-top: 0;
+      border-inline-start: 1px solid var(--c-line);
+    }
+    .week-day:first-child { border-inline-start: 0; }
+    .week-day-name { padding-block-start: 0; }
+  }
+  .ride-block {
+    display: grid;
+    gap: 0.125rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    line-height: 1.4;
+  }
+  .ride-block strong { font-size: var(--text-sm); }
+  .ride-block > * { unicode-bidi: plaintext; }
+  .ride-block-recurring {
+    background-color: var(--c-brand);
+    color: var(--c-on-brand);
+  }
+  .ride-block-once {
+    border: 1px dashed var(--c-accent);
+    background-color: var(--c-surface);
+    color: var(--c-ink);
+  }
+  .ride-block-empty {
+    color: var(--c-ink-subtle);
+    font-style: italic;
+  }
+  .legend-swatch {
+    display: inline-block;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 2px;
+    vertical-align: -0.125rem;
+  }
+
+  .ask-list { counter-reset: ask; }
+  .ask-list > li {
+    counter-increment: ask;
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.5rem;
+    padding-block: 1rem;
+    border-top: 1px solid var(--c-line);
+  }
+  .ask-list > li::before {
+    content: counter(ask);
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    line-height: 1.2;
+    color: var(--c-accent);
+  }
+
+  /* Ride-status preview */
+  .status-board {
+    border: 1px solid var(--c-inverse-line);
+    border-radius: var(--radius-lg);
+    background-color: rgb(255 255 255 / 0.04);
+  }
+  .stage-tab {
+    display: grid;
+    gap: 0.5rem;
+    align-content: start;
+    min-height: var(--control-h);
+    padding: 0.75rem 0.5rem;
+    border-top: 3px solid var(--c-inverse-line);
+    color: var(--c-inverse-muted);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: start;
+    cursor: pointer;
+  }
+  .stage-tab:hover { color: var(--c-inverse-ink); }
+  .stage-tab:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; }
+  .stage-tab[aria-selected="true"] {
+    border-top-color: var(--c-inverse-accent);
+    color: var(--c-inverse-ink);
+  }
+  /* Stages before the selected one read as completed */
+  [data-active-index="1"] .stage-tab:nth-child(-n + 1),
+  [data-active-index="2"] .stage-tab:nth-child(-n + 2),
+  [data-active-index="3"] .stage-tab:nth-child(-n + 3) {
+    border-top-color: var(--c-inverse-accent);
+  }
+
+  .route-map { color: var(--c-inverse-muted); }
+  .route-map .route-path { stroke: var(--c-inverse-line); }
+  .route-map .route-progress {
+    stroke: var(--c-inverse-accent);
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100; /* path uses pathLength="100" */
+    transition: stroke-dashoffset var(--duration-slow) var(--ease-standard);
+  }
+  .route-map .route-dot {
+    fill: var(--c-inverse-accent);
+    transition: transform 600ms var(--ease-standard), opacity var(--duration-base);
+    transform: translate(40px, 160px);
+    opacity: 0;
+  }
+  [data-active-index="1"] .route-dot { opacity: 1; transform: translate(40px, 160px); }
+  [data-active-index="2"] .route-dot { opacity: 1; transform: translate(110px, 115px); }
+  [data-active-index="3"] .route-dot { opacity: 1; transform: translate(210px, 70px); }
+  [data-active-index="2"] .route-progress { stroke-dashoffset: 73; }
+  [data-active-index="3"] .route-progress { stroke-dashoffset: 45; }
+
+  /* Practical tips: native disclosure list */
+  .disclosure-list > details {
+    border-top: 1px solid var(--c-line-strong);
+  }
+  .disclosure-list > details:last-child { border-bottom: 1px solid var(--c-line-strong); }
+  .disclosure-list summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4rem;
+    padding-block: 1rem;
+    font-size: var(--text-lg);
+    font-weight: 700;
+    line-height: 1.35;
+    cursor: pointer;
+    list-style: none;
+  }
+  .disclosure-list summary::-webkit-details-marker { display: none; }
+  .disclosure-list summary:hover { color: var(--c-brand-ink); }
+  .disclosure-list summary:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; }
+  .disclosure-icon {
+    position: relative;
+    flex: 0 0 1.75rem;
+    height: 1.75rem;
+    border: 1px solid var(--c-line-strong);
+    border-radius: 50%;
+  }
+  .disclosure-icon::before,
+  .disclosure-icon::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 0.75rem;
+    height: 1.5px;
+    background-color: currentColor;
+    translate: -50% -50%;
+    transition: rotate var(--duration-base) var(--ease-standard);
+  }
+  .disclosure-icon::after { rotate: 90deg; }
+  details[open] .disclosure-icon::after { rotate: 0deg; }
+  .disclosure-body { padding-block-end: 1.5rem; padding-inline-end: 2.75rem; color: var(--c-ink-muted); }
+
+  /* Closing planner panel */
+  .next-ride {
+    overflow: hidden;
+    border: 1px solid var(--c-line-strong);
+    border-radius: var(--radius-lg);
+  }
+  .check-list > li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.75rem;
+    padding-block: 0.625rem;
+  }
+  .check-list svg { width: 1.25rem; height: 1.25rem; margin-block-start: 0.2em; color: var(--c-brand-ink); }
+}

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <title>Your rides · Hearthway Medical Transport</title>
+  <!-- @include head title="Your rides" description="Upcoming rides, recurring schedules and ride history for your Hearthway patient account." robots="noindex, nofollow" -->
+  <script type="module" src="assets/js/dashboard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Account top bar ---------------------------------------------------- -->
+  <header class="site-header">
+    <div class="flex h-[var(--header-h)] items-center gap-3 px-[var(--gutter)] lg:px-6">
+      <a href="index.html" class="-ms-1 rounded-md p-1 text-ink no-underline hover:opacity-80 focus-visible:shadow-[var(--focus-ring)] focus-visible:outline-none" aria-label="Hearthway Medical Transport, Home">
+        <!-- @include brand -->
+      </a>
+      <span class="hidden border-s border-line ps-3 text-sm font-bold text-ink-subtle sm:inline">Patient Account</span>
+
+      <div class="ms-auto flex items-center gap-2">
+        <!-- Below lg these live in the drawer, keeping the bar within the viewport -->
+        <div class="hidden items-center gap-1 lg:flex">
+          <!-- @include preference-toggles -->
+        </div>
+
+        <a class="btn btn-secondary hidden text-sm font-bold sm:inline-flex" href="login.html" data-sign-out>Sign out</a>
+
+        <button type="button" class="btn btn-secondary lg:hidden" data-drawer-open aria-controls="dash-drawer" aria-expanded="false" aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <span class="hidden xs:inline">Menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation drawer (tablet / mobile) -------------------------------- -->
+  <div id="dash-drawer" class="drawer drawer-start lg:hidden" data-drawer>
+    <div class="drawer-scrim" data-drawer-close aria-hidden="true"></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="dash-drawer-title">
+      <div class="flex h-[var(--header-h)] shrink-0 items-center justify-between gap-4 border-b border-line px-5">
+        <h2 id="dash-drawer-title" class="eyebrow">Your account</h2>
+        <button type="button" class="btn btn-secondary btn-icon" data-drawer-close aria-label="Close menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto overscroll-contain">
+        <div class="px-3 py-4">
+          <!-- @include dashboard-nav label="Account sections" -->
+        </div>
+        <ul class="grid gap-1 border-t border-line px-3 py-4">
+          <li><a class="drawer-link" href="login.html" data-sign-out>Sign out</a></li>
+        </ul>
+        <!-- @include preference-switches -->
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-shell">
+    <!-- Sidebar (desktop) ------------------------------------------------ -->
+    <aside class="dash-sidebar hidden lg:block" aria-label="Account">
+      <div class="dash-sidebar-inner">
+      <div class="border-b border-line px-6 py-6">
+        <p class="text-xs font-bold uppercase tracking-[var(--tracking-eyebrow)] text-ink-subtle">Signed in as</p>
+        <p class="mt-1 font-display text-xl font-semibold" data-profile-name>Alex Morgan</p>
+      </div>
+      <div class="flex-1 px-3 py-5">
+        <!-- @include dashboard-nav label="Account sections" -->
+      </div>
+      <div class="grid gap-3 border-t border-line px-6 py-5 text-sm">
+        <p class="text-ink-muted">Need help? <a class="font-bold text-brand-ink underline underline-offset-4" href="contact.html">Contact our team</a></p>
+      </div>
+      </div>
+    </aside>
+
+    <main id="main" class="dash-main">
+      <div class="dash-content">
+        <!-- One section is shown at a time, so the page-level heading lives outside them -->
+        <h1 class="sr-only">Patient dashboard</h1>
+
+        <!-- Overview ------------------------------------------------------ -->
+        <section id="overview" class="dash-section" tabindex="-1" aria-labelledby="overview-title">
+          <p class="eyebrow">Patient account</p>
+          <h2 id="overview-title" class="mt-3 text-4xl">Welcome back, <span data-first-name>Alex</span></h2>
+          <p class="mt-3 text-ink-muted">Here’s what’s coming up with your transportation.</p>
+
+          <div class="notice mt-6">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.01"/></svg>
+            <p>The patient and ride details shown here are fictional examples. Anything you change stays on this page and isn’t sent to a transportation provider.</p>
+          </div>
+
+          <div class="mt-8 grid gap-6 xl:grid-cols-5">
+            <article class="next-ride-panel flex flex-col p-6 sm:p-8 xl:col-span-3" aria-labelledby="next-ride-title">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <p class="text-xs font-bold uppercase tracking-[var(--tracking-eyebrow)] text-ink-subtle">Next ride</p>
+                <span class="status" data-status="scheduled" data-ride-status="ride-1">Scheduled</span>
+              </div>
+              <h2 id="next-ride-title" class="mt-4 text-2xl">Orthopedic appointment</h2>
+              <div class="mt-6 flex flex-wrap items-end gap-x-6 gap-y-2">
+                <p class="next-ride-time"><span class="sr-only">Pickup at </span><span data-ride-time="ride-1">9:30 AM</span></p>
+                <p class="pb-1 text-ink-muted"><time data-ride-date="ride-1" data-day-offset="3" data-date-style="long">In three days</time></p>
+              </div>
+              <div class="ride-route mt-6">
+                <span class="ride-route-dot" aria-hidden="true"></span><p><span class="font-bold text-ink">Pickup:</span> Home · Elm Street</p>
+                <span class="ride-route-dot is-end" aria-hidden="true"></span><p><span class="font-bold text-ink">Destination:</span> Orthopedic clinic · Main entrance</p>
+              </div>
+              <a class="link-arrow mt-4 self-start xl:mt-auto xl:pt-4" href="#upcoming">
+                Manage this ride
+                <svg class="icon-directional" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10h12M11 5l5 5-5 5"/></svg>
+              </a>
+            </article>
+
+            <article class="rounded-lg border border-line p-6 sm:p-8 xl:col-span-2" aria-labelledby="tracker-title">
+              <h2 id="tracker-title" class="text-2xl">Ride status</h2>
+              <p class="mt-1 text-sm text-ink-muted">Orthopedic appointment</p>
+              <ol class="tracker mt-6" data-tracker data-ride="ride-1">
+                <li data-stage="scheduled"><span class="tracker-mark"><span class="tracker-num">1</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3.5 8.5 3 3 6-7"/></svg></span><p><span class="tracker-label">Ride scheduled</span> <span class="sr-only tracker-sr"></span></p></li>
+                <li data-stage="driver-assigned"><span class="tracker-mark"><span class="tracker-num">2</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3.5 8.5 3 3 6-7"/></svg></span><p><span class="tracker-label">Driver assigned</span> <span class="sr-only tracker-sr"></span></p></li>
+                <li data-stage="en-route"><span class="tracker-mark"><span class="tracker-num">3</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3.5 8.5 3 3 6-7"/></svg></span><p><span class="tracker-label">Driver en route</span> <span class="sr-only tracker-sr"></span></p></li>
+                <li data-stage="pickup-completed"><span class="tracker-mark"><span class="tracker-num">4</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3.5 8.5 3 3 6-7"/></svg></span><p><span class="tracker-label">Pickup completed</span> <span class="sr-only tracker-sr"></span></p></li>
+              </ol>
+              <div class="mt-6 flex flex-wrap gap-3">
+                <button type="button" class="btn btn-secondary" data-tracker-next>Simulate next stage</button>
+                <button type="button" class="btn btn-ghost" data-tracker-reset>Reset</button>
+              </div>
+              <p class="mt-4 text-sm text-ink-muted" role="status" aria-live="polite" data-tracker-message></p>
+              <p class="mt-4 border-t border-line pt-4 text-xs text-ink-subtle">Simulated status for an example ride. This is not live tracking and doesn’t show a vehicle’s location.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Upcoming rides ------------------------------------------------ -->
+        <section id="upcoming" class="dash-section" tabindex="-1" aria-labelledby="upcoming-title">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 id="upcoming-title" class="text-3xl">Upcoming rides</h2>
+              <p class="mt-2 text-ink-muted">Review trip details, change a pickup time, or cancel a ride you no longer need.</p>
+            </div>
+            <a class="btn btn-secondary" href="#schedule">Schedule a ride</a>
+          </div>
+
+          <ul class="ride-list mt-6 border-t border-line-strong">
+            <li>
+              <article class="ride-row" data-ride-row="ride-1" aria-labelledby="ride-1-title">
+                <div class="ride-when">
+                  <p class="font-bold"><time data-ride-date="ride-1" data-day-offset="3" data-date-style="short">In 3 days</time></p>
+                  <p class="text-sm text-ink-muted">Pickup <span data-ride-time="ride-1">9:30 AM</span></p>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex flex-wrap items-center gap-3">
+                    <h3 id="ride-1-title" class="ride-title font-sans text-lg font-bold">Orthopedic appointment</h3>
+                    <span class="status" data-status="scheduled" data-ride-status="ride-1">Scheduled</span>
+                  </div>
+                  <div class="ride-route mt-3">
+                    <span class="ride-route-dot" aria-hidden="true"></span><p><span class="sr-only">Pickup: </span>Home · Elm Street</p>
+                    <span class="ride-route-dot is-end" aria-hidden="true"></span><p><span class="sr-only">Destination: </span>Orthopedic clinic · Main entrance</p>
+                  </div>
+                  <div class="ride-details" id="ride-1-details" hidden>
+                    <dl>
+                      <div><dt>Trip type</dt><dd>Round trip</dd></div>
+                      <div><dt>Return pickup</dt><dd>About 11:15 AM, confirmed on the day</dd></div>
+                      <div><dt>Assistance</dt><dd>Door-to-door help</dd></div>
+                      <div><dt>Notes for the driver</dt><dd>Use the side gate; ring the bell.</dd></div>
+                    </dl>
+                  </div>
+                  <p class="mt-3 text-sm text-ink-muted" role="status" aria-live="polite" data-ride-note="ride-1"></p>
+                  <div class="ride-actions mt-4">
+                    <button type="button" class="btn btn-secondary" data-ride-action="details" data-ride="ride-1" aria-expanded="false" aria-controls="ride-1-details">View details</button>
+                    <button type="button" class="btn btn-secondary" data-ride-action="reschedule" data-ride="ride-1">Reschedule</button>
+                    <button type="button" class="btn btn-ghost" data-ride-action="cancel" data-ride="ride-1">Cancel ride</button>
+                    <button type="button" class="btn btn-secondary" data-ride-action="restore" data-ride="ride-1" hidden>Restore ride</button>
+                  </div>
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article class="ride-row" data-ride-row="ride-2" aria-labelledby="ride-2-title">
+                <div class="ride-when">
+                  <p class="font-bold"><time data-ride-date="ride-2" data-day-offset="5" data-date-style="short">In 5 days</time></p>
+                  <p class="text-sm text-ink-muted">Pickup <span data-ride-time="ride-2">7:45 AM</span></p>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex flex-wrap items-center gap-3">
+                    <h3 id="ride-2-title" class="ride-title font-sans text-lg font-bold">Therapy session</h3>
+                    <span class="status" data-status="confirmed" data-ride-status="ride-2">Confirmed</span>
+                  </div>
+                  <div class="ride-route mt-3">
+                    <span class="ride-route-dot" aria-hidden="true"></span><p><span class="sr-only">Pickup: </span>Home · Elm Street</p>
+                    <span class="ride-route-dot is-end" aria-hidden="true"></span><p><span class="sr-only">Destination: </span>Riverside Rehabilitation Center</p>
+                  </div>
+                  <div class="ride-details" id="ride-2-details" hidden>
+                    <dl>
+                      <div><dt>Trip type</dt><dd>Round trip · part of a recurring schedule</dd></div>
+                      <div><dt>Return pickup</dt><dd>11:00 AM</dd></div>
+                      <div><dt>Assistance</dt><dd>Walker travels with passenger</dd></div>
+                      <div><dt>Notes for the driver</dt><dd>None</dd></div>
+                    </dl>
+                  </div>
+                  <p class="mt-3 text-sm text-ink-muted" role="status" aria-live="polite" data-ride-note="ride-2"></p>
+                  <div class="ride-actions mt-4">
+                    <button type="button" class="btn btn-secondary" data-ride-action="details" data-ride="ride-2" aria-expanded="false" aria-controls="ride-2-details">View details</button>
+                    <button type="button" class="btn btn-secondary" data-ride-action="reschedule" data-ride="ride-2">Reschedule</button>
+                    <button type="button" class="btn btn-ghost" data-ride-action="cancel" data-ride="ride-2">Cancel ride</button>
+                    <button type="button" class="btn btn-secondary" data-ride-action="restore" data-ride="ride-2" hidden>Restore ride</button>
+                  </div>
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article class="ride-row" data-ride-row="ride-3" aria-labelledby="ride-3-title">
+                <div class="ride-when">
+                  <p class="font-bold"><time data-ride-date="ride-3" data-day-offset="12" data-date-style="short">In 12 days</time></p>
+                  <p class="text-sm text-ink-muted">Pickup <span data-ride-time="ride-3">1:15 PM</span></p>
+                </div>
+                <div class="min-w-0">
+                  <div class="flex flex-wrap items-center gap-3">
+                    <h3 id="ride-3-title" class="ride-title font-sans text-lg font-bold">Follow-up visit</h3>
+                    <span class="status" data-status="scheduled" data-ride-status="ride-3">Scheduled</span>
+                  </div>
+                  <div class="ride-route mt-3">
+                    <span class="ride-route-dot" aria-hidden="true"></span><p><span class="sr-only">Pickup: </span>Home · Elm Street</p>
+                    <span class="ride-route-dot is-end" aria-hidden="true"></span><p><span class="sr-only">Destination: </span>Community Health Center · Entrance B</p>
+                  </div>
+                  <div class="ride-details" id="ride-3-details" hidden>
+                    <dl>
+                      <div><dt>Trip type</dt><dd>One way</dd></div>
+                      <div><dt>Return pickup</dt><dd>Not requested</dd></div>
+                      <div><dt>Assistance</dt><dd>Steadying arm to and from the vehicle</dd></div>
+                      <div><dt>Notes for the driver</dt><dd>Daughter will meet the passenger at the entrance.</dd></div>
+                    </dl>
+                  </div>
+                  <p class="mt-3 text-sm text-ink-muted" role="status" aria-live="polite" data-ride-note="ride-3"></p>
+                  <div class="ride-actions mt-4">
+                    <button type="button" class="btn btn-secondary" data-ride-action="details" data-ride="ride-3" aria-expanded="false" aria-controls="ride-3-details">View details</button>
+                    <button type="button" class="btn btn-secondary" data-ride-action="reschedule" data-ride="ride-3">Reschedule</button>
+                    <button type="button" class="btn btn-ghost" data-ride-action="cancel" data-ride="ride-3">Cancel ride</button>
+                    <button type="button" class="btn btn-secondary" data-ride-action="restore" data-ride="ride-3" hidden>Restore ride</button>
+                  </div>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Schedule a ride ----------------------------------------------- -->
+        <section id="schedule" class="dash-section" tabindex="-1" aria-labelledby="schedule-title">
+          <h2 id="schedule-title" class="text-3xl">Schedule a ride</h2>
+          <p class="mt-2 max-w-2xl text-ink-muted">Tell us about the trip. You’ll be able to review everything before anything else happens.</p>
+
+          <form id="schedule-form" class="mt-8 grid gap-6 sm:grid-cols-2" novalidate>
+            <div class="form-status sm:col-span-2" role="status" aria-live="polite" data-form-status></div>
+
+            <div class="field">
+              <label class="field-label" for="ride-date">Pickup date</label>
+              <input class="input" id="ride-date" name="date" type="date" aria-describedby="ride-date-error" required>
+              <p class="field-error" id="ride-date-error" data-error-for="date" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="ride-time">Pickup time</label>
+              <input class="input" id="ride-time" name="time" type="time" aria-describedby="ride-time-hint ride-time-error" required>
+              <p class="field-hint" id="ride-time-hint">Allow time for check-in before the appointment.</p>
+              <p class="field-error" id="ride-time-error" data-error-for="time" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="ride-pickup">Pickup location</label>
+              <input class="input" id="ride-pickup" name="pickup" type="text" autocomplete="street-address" placeholder="e.g. Home, Elm Street" aria-describedby="ride-pickup-error" required>
+              <p class="field-error" id="ride-pickup-error" data-error-for="pickup" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="ride-destination">Destination or healthcare facility</label>
+              <input class="input" id="ride-destination" name="destination" type="text" placeholder="e.g. Community Health Center" aria-describedby="ride-destination-error" required>
+              <p class="field-error" id="ride-destination-error" data-error-for="destination" hidden></p>
+            </div>
+            <div class="field sm:col-span-2">
+              <label class="field-label" for="ride-assistance">Mobility assistance</label>
+              <select class="select" id="ride-assistance" name="assistance" aria-describedby="ride-assistance-error" required>
+                <option value="">Choose the help needed</option>
+                <option>Walks independently</option>
+                <option>Steadying arm to and from the vehicle</option>
+                <option>Uses a walker or cane</option>
+                <option>Travels in own wheelchair (accessible vehicle, where available)</option>
+                <option>Door-to-door help</option>
+              </select>
+              <p class="field-error" id="ride-assistance-error" data-error-for="assistance" hidden></p>
+            </div>
+            <fieldset class="field sm:col-span-2" aria-describedby="ride-trip-error">
+              <legend class="field-label mb-2">Trip type</legend>
+              <div class="grid gap-3 sm:grid-cols-2">
+                <label class="choice"><input type="radio" name="tripType" value="One way"> One way</label>
+                <label class="choice"><input type="radio" name="tripType" value="Round trip"> Round trip</label>
+              </div>
+              <p class="field-error" id="ride-trip-error" data-error-for="tripType" hidden></p>
+            </fieldset>
+            <div class="field sm:col-span-2">
+              <label class="field-label" for="ride-notes">Notes for the driver <span class="font-normal text-ink-subtle">(optional)</span></label>
+              <textarea class="textarea" id="ride-notes" name="notes" maxlength="300" aria-describedby="ride-notes-hint"></textarea>
+              <p class="field-hint" id="ride-notes-hint">Access details or who will meet the passenger. Please don’t include medical information. <span data-char-count>0</span>/300</p>
+            </div>
+            <div class="sm:col-span-2">
+              <button type="submit" class="btn btn-primary btn-lg">Review ride request</button>
+            </div>
+          </form>
+
+          <div class="mt-8 rounded-lg border border-line-strong bg-surface p-6 sm:p-8" data-schedule-review hidden>
+            <h3 class="text-2xl outline-none" tabindex="-1">Review your ride request</h3>
+            <dl class="mt-6 grid gap-x-8 gap-y-4 text-sm sm:grid-cols-2" data-review-list></dl>
+            <div class="notice mt-6">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.01"/></svg>
+              <p><strong class="text-ink">Request not sent.</strong> This website is a frontend demonstration, so nothing has been sent to a transportation provider and no ride has been booked.</p>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <button type="button" class="btn btn-secondary" data-review-edit>Edit details</button>
+              <button type="button" class="btn btn-ghost" data-review-clear>Start a new request</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recurring rides ----------------------------------------------- -->
+        <section id="recurring" class="dash-section" tabindex="-1" aria-labelledby="recurring-title">
+          <h2 id="recurring-title" class="text-3xl">Recurring rides</h2>
+          <p class="mt-2 max-w-2xl text-ink-muted">A regular schedule for ongoing treatment. Pause it for a holiday or a break in treatment, and turn it back on when you’re ready.</p>
+
+          <div class="mt-8 rounded-lg border border-line p-6 sm:p-8" data-recurring data-recurring-state="active">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <h3 class="font-sans text-lg font-bold">Therapy sessions</h3>
+              <span class="status" data-status="active" data-recurring-status>Active</span>
+            </div>
+            <p class="mt-2 text-ink-muted"><span data-recurring-summary>Mon, Wed and Fri · pickup 7:45 AM</span> · to Riverside Rehabilitation Center</p>
+
+            <ul class="weekdays mt-6" aria-label="Ride days" data-weekdays>
+              <li class="weekday" data-day="1" data-on><abbr title="Monday">Mon</abbr><span class="weekday-mark" data-weekday-mark>Ride</span></li>
+              <li class="weekday" data-day="2"><abbr title="Tuesday">Tue</abbr><span class="weekday-mark" data-weekday-mark>–</span></li>
+              <li class="weekday" data-day="3" data-on><abbr title="Wednesday">Wed</abbr><span class="weekday-mark" data-weekday-mark>Ride</span></li>
+              <li class="weekday" data-day="4"><abbr title="Thursday">Thu</abbr><span class="weekday-mark" data-weekday-mark>–</span></li>
+              <li class="weekday" data-day="5" data-on><abbr title="Friday">Fri</abbr><span class="weekday-mark" data-weekday-mark>Ride</span></li>
+              <li class="weekday" data-day="6"><abbr title="Saturday">Sat</abbr><span class="weekday-mark" data-weekday-mark>–</span></li>
+              <li class="weekday" data-day="7"><abbr title="Sunday">Sun</abbr><span class="weekday-mark" data-weekday-mark>–</span></li>
+            </ul>
+
+            <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-5">
+              <button type="button" class="switch" role="switch" aria-checked="true" data-recurring-toggle>
+                <span class="switch-track" aria-hidden="true"></span>
+                Schedule active
+              </button>
+              <button type="button" class="btn btn-secondary" data-recurring-edit>Edit schedule</button>
+            </div>
+            <p class="mt-4 text-sm text-ink-muted" role="status" aria-live="polite" data-recurring-note></p>
+          </div>
+          <p class="mt-4 text-xs text-ink-subtle">This schedule is example data. Changes apply on this page only and aren’t sent to a provider.</p>
+        </section>
+
+        <!-- Ride history -------------------------------------------------- -->
+        <section id="history" class="dash-section" tabindex="-1" aria-labelledby="history-title">
+          <h2 id="history-title" class="text-3xl">Ride history</h2>
+          <p class="mt-2 text-ink-muted">Your recent trips.</p>
+
+          <table class="history-table mt-6">
+            <caption class="sr-only">Past rides, most recent first</caption>
+            <thead>
+              <tr><th scope="col">Date</th><th scope="col">Trip purpose</th><th scope="col">Destination</th><th scope="col">Status</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Date"><time data-day-offset="-4" data-date-style="full">4 days ago</time></td>
+                <td data-label="Purpose">Orthopedic consultation</td>
+                <td data-label="Destination">Orthopedic clinic</td>
+                <td data-label="Status"><span class="status" data-status="completed">Completed</span></td>
+              </tr>
+              <tr>
+                <td data-label="Date"><time data-day-offset="-6" data-date-style="full">6 days ago</time></td>
+                <td data-label="Purpose">Therapy session</td>
+                <td data-label="Destination">Riverside Rehabilitation Center</td>
+                <td data-label="Status"><span class="status" data-status="completed">Completed</span></td>
+              </tr>
+              <tr>
+                <td data-label="Date"><time data-day-offset="-8" data-date-style="full">8 days ago</time></td>
+                <td data-label="Purpose">Therapy session</td>
+                <td data-label="Destination">Riverside Rehabilitation Center</td>
+                <td data-label="Status"><span class="status" data-status="completed">Completed</span></td>
+              </tr>
+              <tr>
+                <td data-label="Date"><time data-day-offset="-15" data-date-style="full">15 days ago</time></td>
+                <td data-label="Purpose">Eye clinic visit</td>
+                <td data-label="Destination">Community Health Center</td>
+                <td data-label="Status"><span class="status" data-status="cancelled">Cancelled</span></td>
+              </tr>
+              <tr>
+                <td data-label="Date"><time data-day-offset="-22" data-date-style="full">22 days ago</time></td>
+                <td data-label="Purpose">Lab appointment</td>
+                <td data-label="Destination">Community Health Center</td>
+                <td data-label="Status"><span class="status" data-status="completed">Completed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Profile & preferences ----------------------------------------- -->
+        <section id="profile" class="dash-section" tabindex="-1" aria-labelledby="profile-title">
+          <h2 id="profile-title" class="text-3xl">Profile &amp; preferences</h2>
+          <p class="mt-2 max-w-2xl text-ink-muted">How we address you and how you’d like to hear about your rides.</p>
+
+          <form id="profile-form" class="mt-8 grid max-w-2xl gap-6" novalidate>
+            <div class="form-status" role="status" aria-live="polite" data-form-status></div>
+            <div class="field">
+              <label class="field-label" for="profile-name">Display name</label>
+              <input class="input" id="profile-name" name="name" type="text" autocomplete="name" value="Alex Morgan" aria-describedby="profile-name-error" required>
+              <p class="field-error" id="profile-name-error" data-error-for="name" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="profile-email">Email address</label>
+              <input class="input" id="profile-email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" value="alex.morgan@example.com" aria-describedby="profile-email-error" required>
+              <p class="field-error" id="profile-email-error" data-error-for="email" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="profile-phone">Phone number <span class="font-normal text-ink-subtle">(needed for calls or texts)</span></label>
+              <input class="input" id="profile-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="profile-phone-error">
+              <p class="field-error" id="profile-phone-error" data-error-for="phone" hidden></p>
+            </div>
+            <fieldset class="field" aria-describedby="profile-contact-error">
+              <legend class="field-label mb-2">Preferred contact method</legend>
+              <div class="grid gap-3 sm:grid-cols-3">
+                <label class="choice"><input type="radio" name="contact" value="email" checked> Email</label>
+                <label class="choice"><input type="radio" name="contact" value="call"> Phone call</label>
+                <label class="choice"><input type="radio" name="contact" value="text"> Text message</label>
+              </div>
+              <p class="field-error" id="profile-contact-error" data-error-for="contact" hidden></p>
+            </fieldset>
+            <div>
+              <button type="submit" class="btn btn-primary btn-lg">Save changes</button>
+            </div>
+          </form>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Dialogs ----------------------------------------------------------- -->
+  <dialog class="dialog" id="reschedule-dialog" aria-labelledby="reschedule-title">
+    <form method="dialog" novalidate data-reschedule-form>
+      <div class="dialog-body">
+        <h2 id="reschedule-title" class="text-2xl">Reschedule ride</h2>
+        <p class="mt-2 text-sm text-ink-muted" data-dialog-ride-name></p>
+        <div class="mt-6 grid gap-5 sm:grid-cols-2">
+          <div class="field">
+            <label class="field-label" for="reschedule-date">New pickup date</label>
+            <input class="input" id="reschedule-date" name="date" type="date" aria-describedby="reschedule-date-error" required>
+            <p class="field-error" id="reschedule-date-error" data-error-for="date" hidden></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="reschedule-time">New pickup time</label>
+            <input class="input" id="reschedule-time" name="time" type="time" aria-describedby="reschedule-time-error" required>
+            <p class="field-error" id="reschedule-time-error" data-error-for="time" hidden></p>
+          </div>
+        </div>
+        <p class="mt-5 text-sm text-ink-muted">This updates the ride on this page only. No transportation provider will be contacted.</p>
+      </div>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn-ghost" data-dialog-close>Keep current time</button>
+        <button type="submit" class="btn btn-primary" value="confirm">Update pickup time</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog" id="cancel-dialog" aria-labelledby="cancel-title">
+    <form method="dialog">
+      <div class="dialog-body">
+        <h2 id="cancel-title" class="text-2xl">Cancel this ride?</h2>
+        <p class="mt-3 text-ink-muted" data-dialog-ride-name></p>
+        <p class="mt-3 text-sm text-ink-muted">The ride will be marked as cancelled on this page. You can restore it afterwards. No transportation provider will be notified.</p>
+      </div>
+      <div class="dialog-actions">
+        <button type="submit" class="btn btn-ghost" value="keep">Keep ride</button>
+        <button type="submit" class="btn btn-primary" value="cancel">Cancel ride</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog" id="recurring-dialog" aria-labelledby="recurring-dialog-title">
+    <form method="dialog" novalidate data-recurring-form>
+      <div class="dialog-body">
+        <h2 id="recurring-dialog-title" class="text-2xl">Edit recurring schedule</h2>
+        <p class="mt-2 text-sm text-ink-muted">Therapy sessions · Riverside Rehabilitation Center</p>
+        <fieldset class="field mt-6" aria-describedby="recurring-days-error">
+          <legend class="field-label mb-2">Ride days</legend>
+          <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            <label class="choice"><input type="checkbox" name="days" value="1"> Mon</label>
+            <label class="choice"><input type="checkbox" name="days" value="2"> Tue</label>
+            <label class="choice"><input type="checkbox" name="days" value="3"> Wed</label>
+            <label class="choice"><input type="checkbox" name="days" value="4"> Thu</label>
+            <label class="choice"><input type="checkbox" name="days" value="5"> Fri</label>
+            <label class="choice"><input type="checkbox" name="days" value="6"> Sat</label>
+            <label class="choice"><input type="checkbox" name="days" value="7"> Sun</label>
+          </div>
+          <p class="field-error" id="recurring-days-error" data-error-for="days" hidden></p>
+        </fieldset>
+        <div class="field mt-5">
+          <label class="field-label" for="recurring-time">Pickup time</label>
+          <input class="input" id="recurring-time" name="time" type="time" aria-describedby="recurring-time-error" required>
+          <p class="field-error" id="recurring-time-error" data-error-for="time" hidden></p>
+        </div>
+      </div>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn-ghost" data-dialog-close>Discard changes</button>
+        <button type="submit" class="btn btn-primary" value="confirm">Save schedule</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>

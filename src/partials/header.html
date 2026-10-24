@@ -1,0 +1,88 @@
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container-site flex h-(--header-h) items-center gap-3">
+    <a href="index.html" class="-ms-1 rounded-md p-1 text-ink no-underline" aria-label="Hearthway Medical Transport, Home">
+      <!-- @include brand -->
+    </a>
+
+    <nav aria-label="Primary" class="ms-4 hidden lg:block xl:ms-10">
+      <ul class="flex items-center gap-0.5">
+        <li class="relative" data-dropdown>
+          <button type="button" class="nav-link" data-dropdown-trigger data-nav-group="index home-2" aria-expanded="false" aria-controls="home-menu">
+            Home
+            <svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4"/></svg>
+          </button>
+          <ul id="home-menu" class="dropdown-panel" data-dropdown-panel>
+            <li><a class="dropdown-link" href="index.html" data-nav="index">Home 1</a></li>
+            <li><a class="dropdown-link" href="home-2.html" data-nav="home-2">Home 2</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-link" href="services.html" data-nav="services">Services</a></li>
+        <li><a class="nav-link" href="pricing.html" data-nav="pricing">Pricing</a></li>
+        <li><a class="nav-link" href="about.html" data-nav="about">About</a></li>
+        <li><a class="nav-link" href="contact.html" data-nav="contact">Contact</a></li>
+        <li><a class="nav-link" href="dashboard.html" data-nav="dashboard">Dashboard</a></li>
+      </ul>
+    </nav>
+
+    <div class="ms-auto flex items-center gap-1.5">
+      <div class="hidden items-center gap-1 lg:flex">
+        <!-- @include preference-toggles -->
+        <span class="mx-2 h-6 w-px bg-line" aria-hidden="true"></span>
+        <a class="nav-link" href="login.html" data-nav="login">Login</a>
+      </div>
+
+      <a class="btn btn-primary hidden lg:inline-flex" href="contact.html#schedule">Schedule a Ride</a>
+
+      <button type="button" class="btn btn-secondary lg:hidden" data-drawer-open aria-controls="site-drawer" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        Menu
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="site-drawer" class="drawer lg:hidden" data-drawer>
+  <div class="drawer-scrim" data-drawer-close aria-hidden="true"></div>
+
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="flex h-(--header-h) shrink-0 items-center justify-between gap-4 border-b border-line px-5">
+      <h2 id="drawer-title" class="eyebrow">Menu</h2>
+      <button type="button" class="btn btn-secondary btn-icon" data-drawer-close aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto overscroll-contain">
+      <nav aria-label="Mobile" class="px-3 py-4">
+        <ul>
+          <li>
+            <button type="button" class="drawer-link w-full justify-between" data-drawer-accordion-trigger data-nav-group="index home-2" aria-expanded="false" aria-controls="drawer-home-menu">
+              Home
+              <svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4"/></svg>
+            </button>
+            <ul id="drawer-home-menu" class="ps-4" data-drawer-accordion-panel hidden>
+              <li><a class="drawer-link" href="index.html" data-nav="index">Home 1</a></li>
+              <li><a class="drawer-link" href="home-2.html" data-nav="home-2">Home 2</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="mt-3 border-t border-line pt-3">
+          <li><a class="drawer-link" href="services.html" data-nav="services">Services</a></li>
+          <li><a class="drawer-link" href="pricing.html" data-nav="pricing">Pricing</a></li>
+          <li><a class="drawer-link" href="about.html" data-nav="about">About</a></li>
+          <li><a class="drawer-link" href="contact.html" data-nav="contact">Contact</a></li>
+          <li><a class="drawer-link" href="dashboard.html" data-nav="dashboard">Dashboard</a></li>
+          <li><a class="drawer-link" href="login.html" data-nav="login">Login</a></li>
+        </ul>
+      </nav>
+
+      <!-- @include preference-switches -->
+    </div>
+
+    <div class="shrink-0 border-t border-line p-5">
+      <a class="btn btn-primary btn-lg btn-block" href="contact.html#schedule">Schedule a Ride</a>
+    </div>
+  </div>
+</div>

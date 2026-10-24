@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <title>Design foundation · Hearthway Medical Transport</title>
+  <!-- @include head title="Design foundation" description="Internal test page for the Hearthway design system and shared layout." robots="noindex, nofollow" -->
+</head>
+<body data-page="foundation">
+  <!-- @include header -->
+
+  <!--
+    TEMPORARY — Phase 1/2 verification page. Exercises tokens, type, buttons,
+    form controls and the shared header/footer. Remove before launch.
+  -->
+  <main id="main">
+    <section class="container-site pb-16 pt-14 md:pb-20 md:pt-20">
+      <p class="eyebrow">Internal · Phase 1 &amp; 2</p>
+      <h1 class="mt-4 max-w-3xl text-5xl">Design foundation</h1>
+      <p class="lede mt-6">
+        A working reference for the tokens, type, controls and shared layout that every page will be built from. Toggle theme and direction in the header to check each state.
+      </p>
+    </section>
+
+    <section class="border-t border-line" aria-labelledby="colour-heading">
+      <div class="container-site grid gap-10 py-16 md:grid-cols-12">
+        <div class="md:col-span-4">
+          <h2 id="colour-heading" class="text-3xl">Colour</h2>
+          <p class="mt-3 text-ink-muted">Semantic tokens. Each one is redefined for dark mode, so components never need per-theme overrides.</p>
+        </div>
+        <dl class="grid gap-x-8 sm:grid-cols-2 md:col-span-8">
+          <div class="flex items-center gap-4 border-b border-line py-3"><span class="size-10 shrink-0 rounded-md border border-line bg-canvas"></span><div><dt class="font-bold">canvas</dt><dd class="text-sm text-ink-subtle">Page background</dd></div></div>
+          <div class="flex items-center gap-4 border-b border-line py-3"><span class="size-10 shrink-0 rounded-md border border-line bg-surface"></span><div><dt class="font-bold">surface</dt><dd class="text-sm text-ink-subtle">Panels, menus, drawer</dd></div></div>
+          <div class="flex items-center gap-4 border-b border-line py-3"><span class="size-10 shrink-0 rounded-md border border-line bg-sunken"></span><div><dt class="font-bold">sunken</dt><dd class="text-sm text-ink-subtle">Wells and hover fills</dd></div></div>
+          <div class="flex items-center gap-4 border-b border-line py-3"><span class="size-10 shrink-0 rounded-md bg-ink"></span><div><dt class="font-bold">ink</dt><dd class="text-sm text-ink-subtle">Primary text</dd></div></div>
+          <div class="flex items-center gap-4 border-b border-line py-3"><span class="size-10 shrink-0 rounded-md bg-ink-muted"></span><div><dt class="font-bold">ink-muted</dt><dd class="text-sm text-ink-subtle">Secondary text</dd></div></div>
+          <div class="flex items-center gap-4 border-b border-line py-3"><span class="size-10 shrink-0 rounded-md bg-brand"></span><div><dt class="font-bold">brand</dt><dd class="text-sm text-ink-subtle">Forest green — primary actions</dd></div></div>
+          <div class="flex items-center gap-4 border-b border-line py-3"><span class="size-10 shrink-0 rounded-md bg-brand-soft"></span><div><dt class="font-bold">brand-soft</dt><dd class="text-sm text-ink-subtle">Active and selected fills</dd></div></div>
+          <div class="flex items-center gap-4 border-b border-line py-3"><span class="size-10 shrink-0 rounded-md bg-sage"></span><div><dt class="font-bold">sage</dt><dd class="text-sm text-ink-subtle">Supporting accent</dd></div></div>
+          <div class="flex items-center gap-4 border-b border-line py-3"><span class="size-10 shrink-0 rounded-md bg-accent"></span><div><dt class="font-bold">accent</dt><dd class="text-sm text-ink-subtle">Clay — used sparingly</dd></div></div>
+          <div class="flex items-center gap-4 border-b border-line py-3"><span class="size-10 shrink-0 rounded-md bg-footer"></span><div><dt class="font-bold">footer</dt><dd class="text-sm text-ink-subtle">Footer ground</dd></div></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="border-t border-line" aria-labelledby="type-heading">
+      <div class="container-site grid gap-10 py-16 md:grid-cols-12">
+        <div class="md:col-span-4">
+          <h2 id="type-heading" class="text-3xl">Typography</h2>
+          <p class="mt-3 text-ink-muted">Source Serif 4 for headings, Atkinson Hyperlegible Next for reading — designed for low-vision legibility. Body text never drops below 16px.</p>
+        </div>
+        <div class="grid gap-6 md:col-span-8">
+          <p class="eyebrow">Eyebrow label</p>
+          <p class="font-display text-4xl font-semibold">Rides that arrive on time, every time you need one.</p>
+          <h3 class="text-2xl">Section heading</h3>
+          <h4 class="text-xl">Sub-heading</h4>
+          <p class="lede">Lede paragraph introduces a section in a calm, readable voice.</p>
+          <p class="prose-measure">Body copy is set at 17px with a 1.65 line height and a comfortable measure, so long explanations of eligibility, scheduling or payment remain easy to follow for every reader.</p>
+          <p class="text-sm text-ink-subtle">Small meta text — still at least 4.5:1 contrast.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-line" aria-labelledby="buttons-heading">
+      <div class="container-site grid gap-10 py-16 md:grid-cols-12">
+        <div class="md:col-span-4">
+          <h2 id="buttons-heading" class="text-3xl">Buttons</h2>
+          <p class="mt-3 text-ink-muted">One base class, three variants, two sizes. 44px minimum height everywhere.</p>
+        </div>
+        <div class="grid gap-6 md:col-span-8">
+          <div class="flex flex-wrap items-center gap-3">
+            <a class="btn btn-primary" href="contact.html">Schedule a Ride</a>
+            <a class="btn btn-secondary" href="services.html">View services</a>
+            <button type="button" class="btn btn-ghost">Ghost action</button>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <a class="btn btn-primary btn-lg" href="contact.html">
+              Schedule a Ride
+              <svg class="icon-directional" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10h12M11 5l5 5-5 5"/></svg>
+            </a>
+            <a class="btn btn-secondary btn-lg" href="pricing.html">See pricing</a>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <button type="button" class="btn btn-primary" disabled>Disabled</button>
+            <button type="button" class="btn btn-secondary" disabled>Disabled</button>
+            <button type="button" class="btn btn-ghost" disabled>Disabled</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-line" aria-labelledby="forms-heading">
+      <div class="container-site grid gap-10 py-16 md:grid-cols-12">
+        <div class="md:col-span-4">
+          <h2 id="forms-heading" class="text-3xl">Form controls</h2>
+          <p class="mt-3 text-ink-muted">Large targets, persistent labels, clear error text. Not wired to any backend.</p>
+        </div>
+        <form class="grid gap-6 sm:grid-cols-2 md:col-span-8" novalidate>
+          <div class="field">
+            <label class="field-label" for="demo-name">Full name</label>
+            <input class="input" id="demo-name" type="text" autocomplete="name" placeholder="e.g. Maria Lopez">
+          </div>
+          <div class="field">
+            <label class="field-label" for="demo-mobility">Mobility needs</label>
+            <select class="select" id="demo-mobility">
+              <option>Ambulatory</option>
+              <option>Wheelchair</option>
+              <option>Stretcher</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label" for="demo-phone">Phone</label>
+            <input class="input" id="demo-phone" type="tel" aria-invalid="true" aria-describedby="demo-phone-error">
+            <p class="field-error" id="demo-phone-error">Enter a phone number so the driver can reach you.</p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="demo-disabled">Disabled field</label>
+            <input class="input" id="demo-disabled" type="text" value="Not editable" disabled>
+          </div>
+          <div class="field sm:col-span-2">
+            <label class="field-label" for="demo-notes">Notes for the driver</label>
+            <textarea class="textarea" id="demo-notes" aria-describedby="demo-notes-hint"></textarea>
+            <p class="field-hint" id="demo-notes-hint">Gate codes, building entrances or assistance needed.</p>
+          </div>
+          <label class="flex items-center gap-3 sm:col-span-2">
+            <input class="check" type="checkbox">
+            <span>A caregiver will ride along</span>
+          </label>
+        </form>
+      </div>
+    </section>
+
+    <section class="border-t border-line" aria-labelledby="direction-heading">
+      <div class="container-site py-16">
+        <h2 id="direction-heading" class="text-3xl">Direction check</h2>
+        <p class="mt-3 max-w-2xl text-ink-muted">This block uses logical properties: the rule sits on the inline-start edge and the arrow flips in RTL. Headings stay left-aligned in both directions.</p>
+        <div class="mt-8 max-w-2xl border-s-4 border-brand bg-surface ps-6 pe-4 py-5">
+          <p class="font-bold">Inline-start accent</p>
+          <p class="mt-1 text-ink-muted">Padding and border follow the reading direction.</p>
+        </div>
+        <h3 class="mt-12 text-center text-2xl">Centred heading</h3>
+      </div>
+    </section>
+  </main>
+
+  <!-- @include footer -->
+</body>
+</html>
